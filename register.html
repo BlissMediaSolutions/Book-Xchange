@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Book X-Change</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--	<link href="me.css" rel="stylesheet" />-->
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script> <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Book Xchange</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.php">Home<span class="sr-only">(current)</span></a></li>
+                    <li><a href="buy.php">Buy</a></li>
+                    <li><a href="sell.php">Sell</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!---IF LOGGED IN-->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#NAME#<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="account.php">My Account</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                    <!--ELSE
+                <li><a href="#">Register</a></li>
+                <!--END IF-->
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                   <legend>Register</legend>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Given Name</label>
+                        <input type="text" class="form-control" id="inputGivenName" placeholder="Firstname" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Surname</label>
+                        <input type="text" class="form-control" id="inputSurname" placeholder="Surname" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Re-enter Password" required="required">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" required="required"> I agree to the <a href="#">terms and conditions</a>.
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
