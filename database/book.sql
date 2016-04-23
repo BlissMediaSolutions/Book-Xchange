@@ -1,6 +1,9 @@
 /* Database Script for The Book Exchaange
-   Date: 21/4/2016
-   version: 1.0   */
+   Last Modified Date: 23/4/2016
+   version: 1.1   
+		1.0 - Initall Script creation
+		1.1 - Added Price for Selling Book
+   */
 
 CREATE DATABASE IF NOT EXISTS BOOKXCHANGE;
 USE BOOKXCHANGE;
@@ -33,6 +36,7 @@ CREATE TABLE XCHANGE (
 	XCID MEDIUMINT NOT NULL AUTO_INCREMENT,		/* ID of the Xchange to occur */
 	STUDID INT,									/* Student ID of Book Seller */
 	BOOKID INT,									/* Book ID of Book being Sold */
+	BOOKPRICE INT,								/* The Price the Book is being sold for */
 	BOOKIMG MEDIUMBLOB,							/* Reserved for Image of Book */
 	BOOKRES INT,								/* Student ID of Book Buyer */
 	BOOKDATE DATE,								/* Date book sold */
