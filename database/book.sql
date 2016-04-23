@@ -16,7 +16,7 @@ CREATE TABLE STUDENT (
 	LASTNAME VARCHAR(20) NOT NULL,				/* Student Last/surname */
 	EMAIL VARCHAR(40) NOT NULL,					/* Email address - must end with "swin.edu.au" */
 	PHONE VARCHAR(10),							/* Student Phone Number */
-	PASSWORD VARCHAR(60) NOT NULL,				/* Password used - hashed/salted */
+	PASSWORD CHAR(60) NOT NULL,				/* Password used - hashed/salted */
 	PRIMARY KEY (STUDID)
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE XCHANGE (
 	BOOKIMG MEDIUMBLOB,							/* Reserved for Image of Book */
 	BOOKRES INT,								/* Student ID of Book Buyer */
 	BOOKDATE DATE,								/* Date book sold */
-	BOOKSOLD TINYINT(1),						/* did the book actually get sold? 0=NO 1=YES */
+	BOOKSOLD DOUBLE(3,2),						/* did the book actually get sold? 0=NO 1=YES */
 	PRIMARY KEY (XCID),
 	FOREIGN KEY (STUDID) REFERENCES STUDENT(STUDID),
 	FOREIGN KEY (BOOKID) REFERENCES BOOK (BOOKID)
