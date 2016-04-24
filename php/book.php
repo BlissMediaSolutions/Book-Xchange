@@ -1,9 +1,9 @@
+<?php
 /* Book Class for The Book Exchaange
    Last Modified Date: 24/4/2016
    version: 1.0
 		1.0 - Initall Book Class creation with some db communication */
-		
- <?php
+		 
 	class Book 
 	{
 		/* Class variables */
@@ -13,7 +13,7 @@
 		var $author;								/* The book author */
 		var $publish;								/* The book publisher */
 		var $edit;									/* The book edition */
-			
+		
 		/* Class Constructor */
 		function _construct ($bname, $bisbn, $bauthor, $bpublish, $bedit)
 		{
