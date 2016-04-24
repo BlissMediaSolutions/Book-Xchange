@@ -7,6 +7,7 @@ Developed with HTML5, CSS3, javascript, Angular.js, AJAX, PHP & SQL.
 
 ##### Notes: 
 - SQL syntax is design for use with MySQL & MariaDB
+- 'settings.php' lists the connection details for the DB.  You need to modify the password in this, with your DB password
 - PHP Unit Tests requires installation of PHPUnit framework
 - Internet Explorer 8 (and earlier) don't support HTML5
 
