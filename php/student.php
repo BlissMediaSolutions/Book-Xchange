@@ -1,12 +1,12 @@
 <?php
 /* Student Class for The Book Exchaange
-   Last Modified Date: 26/4/2016
+   Last Modified Date: 27/4/2016
    version: 1.2
 		1.0 - Initall Student Class creation 
 		1.1 - Adding db communication to write Student to db 
 		1.2 - Create Dbase class to handle all db query, modify student in accordance  */
  
-	class Student 
+	class Student
 	{
 
 		require ("dbase.php")
@@ -35,7 +35,7 @@
 
 		}
 		
-		/* Class functions */
+		/* Class set/get functions */
 		function getStudentID(){
 			return $this->StudID;
 		}
@@ -80,37 +80,25 @@
 			return $this->password;
 		}
 
-		function addNewStudent($this->StudID, $this->fname, $this->lname, $this->email, $this->phone, $this->password)
+		function addStudent()//$this->StudID, $this->fname, $this->lname, $this->email, $this->phone, $this->password)
 		{
 			
 			$query = "INSERT INTO STUDENT (STUDID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
 			$sqltable = "STUDENT";
-			WriteToDbase($sqltable, $query);
+			WriteToDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
 		}
 
-		function addDBComms($sqlquery)
-		{
-			//require_once ("settings.php");//connection info 
-			//$conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-			//if (!$conn) 
-			//{
-		//		echo "<p><font color='red'> Error Connecting to Database </font></p>";
-		//	} else 
-		//	{
-		//		$result = mysqli_query($conn, $sqlquery);
-		//		if(!$result) 
-		//	{
-		//		echo "<p class=\"wrong\">Something is wrong with ", $query, "</p>";		//		
-		//	} else 
-		//	{
-		//		$studquery = "SELECT MAX(STUDID) FROM STUDENT";
-		//		$newresult = mysqli_query($conn, $studquery);
-		//		return mqsqli_fetch_row($newresult);
-		//		 
-		//		mysqli_free_result($newresult);
-		//	}
-		//	mysqli_close($conn);
+		function deleteStudent($this->StudID){
+			$sqltable = "STUDENT";
+			$query = "DELETE FROM STUDENT WHERE STUDID = '$this->StudID'";
+			deleteFromDbase($sqltable, $query);
 		}
+
+		function updateStudent($this->StudID){
+
+		}
+
+		
 
 	} /* End Class */
 ?>

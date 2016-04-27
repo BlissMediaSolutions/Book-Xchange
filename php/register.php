@@ -15,7 +15,7 @@
 	$studphone = $_GET['phone'];
 	$studpass = $_GET['password'];
 
-	$newStudent = new Student(fname, lname, studemail, studphone, studpass);
+	$newStudent = new Student($fname, $lname, $studemail, $studphone, $studpass);
 	$newStudent->addNewStudent();
-	echo ('Congratulations ' $fname ' ' $lname ' you are now registered');
+	//echo ('Congratulations ' $fname ' ' $lname ' you are now registered');
 ?>
