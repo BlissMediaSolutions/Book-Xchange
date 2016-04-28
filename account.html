@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="bookXChange">
+
+<head>
+	<title>Account | Book X-Change</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/user.js"></script>
+	<!--	<link href="me.css" rel="stylesheet" />-->
+	<!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script> <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<nav class="navbar navbar-default" data-ng-controller="userController">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html">Book Xchange</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+					<li><a href="buy.html">Buy</a></li>
+					<li><a href="sell.html">Sell</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<!---IF LOGGED IN-->
+					<li data-ng-show="user.authenticated === true" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstname}}<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li class="active"><a href="account.html">My Account</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="" data-ng-click="performLogout()">Logout</a></li>
+						</ul>
+					</li>
+					<li data-ng-show="user.authenticated !== true"><a href="login.html">Login</a></li>
+					<li data-ng-show="user.authenticated !== true"><a href="register.html">Register</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+	<div class="container" data-ng-controller="userController">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Account Summary</h1>
+				<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>Fullname</th>
+								<td>{{user.fullname}}</td>
+							</tr>
+<!--
+							<tr>
+								<th>First Name</th>
+								<td>{{user.firstname}}</td>
+							</tr>
+							<tr>
+								<th>Last Name</th>
+								<td>{{user.surname}}</td>
+							</tr>
+-->
+							<tr>
+								<th>Email</th>
+								<td>{{user.email}}</td>
+							</tr>
+							<tr>
+								<th>Phone</th>
+								<td>{{user.telephone}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="panel-group">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title"><a data-toggle="collapse" href="#collapse1">Manage Password</a></h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse">
+							<div class="panel-body">
+								<form>
+									<fieldset>
+										<legend>Password</legend>
+										<div class="form-group">
+											<label for="inputOldPassword">Old Password</label>
+											<input type="password" class="form-control" id="inputOldPassword" placeholder="Password" required="required" />
+										</div>
+										<div data-ng-class="password1 === password2 ? 'form-group' : 'form-group has-error'">
+											<label for="inputNewPassword">New Password</label>
+											<input type="password" class="form-control" id="inputNewPassword" placeholder="Password" required="required" data-ng-model="password1" />
+										</div>
+										<div data-ng-class="password1 === password2 ? 'form-group' : 'form-group has-error'">
+											<label for="inputRepeatNewPassword">Repeat New Password</label>
+											<input type="password" class="form-control" id="inputRepeatNewPassword" placeholder="Password" required="required" data-ng-model="password2" />
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-primary pull-right">Change</button>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

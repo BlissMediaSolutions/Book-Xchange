@@ -26,26 +26,27 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Book Xchange</a>
+				<a class="navbar-brand" href="index.html">Book Xchange</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.php">Home<span class="sr-only">(current)</span></a></li>
-					<li><a href="buy.php">Buy</a></li>
-					<li><a href="sell.php">Sell</a></li>
+					<li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+					<li><a href="buy.html">Buy</a></li>
+					<li><a href="sell.html">Sell</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!---IF LOGGED IN-->
 					<li data-ng-show="user.authenticated === true" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstname}}<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="account.php">My Account</a></li>
+							<li><a href="account.html">My Account</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="logout.php">Logout</a></li>
+							<li><a href="" data-ng-click="performLogout()">Logout</a></li>
 						</ul>
 					</li>
-					<li data-ng-show="user.authenticated !== true"><a href="#">Register</a></li>
+					<li data-ng-show="user.authenticated !== true"><a href="login.html">Login</a></li>
+					<li data-ng-show="user.authenticated !== true"><a href="register.html">Register</a></li>
 				</ul>
 
 			</div>

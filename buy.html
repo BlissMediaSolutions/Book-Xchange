@@ -2,7 +2,7 @@
 <html lang="en" data-ng-app="bookXChange">
 
 <head>
-	<title>Login | Book X-Change</title>
+	<title>Buy | Book X-Change</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -32,7 +32,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
-					<li><a href="buy.html">Buy</a></li>
+					<li class="active"><a href="buy.html">Buy</a></li>
 					<li><a href="sell.html">Sell</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -45,7 +45,7 @@
 							<li><a href="" data-ng-click="performLogout()">Logout</a></li>
 						</ul>
 					</li>
-					<li class="active" data-ng-show="user.authenticated !== true"><a href="login.html">Login</a></li>
+					<li data-ng-show="user.authenticated !== true"><a href="login.html">Login</a></li>
 					<li data-ng-show="user.authenticated !== true"><a href="register.html">Register</a></li>
 				</ul>
 
@@ -55,25 +55,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<form>
-					<fieldset>
-						<legend>Login</legend>
-						<div class="form-group">
-							<label for="inputEmail">Email address</label>
-							<input type="email" class="form-control" id="inputEmail" placeholder="Email" required="required" />
-						</div>
-						<div class="form-group">
-							<label for="inputPassword">Password</label>
-							<input type="password" class="form-control" id="inputPassword" placeholder="Password" required="required" />
-						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" required="required" /> Remember my password.
-							</label>
-						</div>
-					</fieldset>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+				
 			</div>
 		</div>
 	</div>
