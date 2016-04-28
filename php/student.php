@@ -1,15 +1,15 @@
 <?php
 /* Student Class for The Book Exchaange
-   Last Modified Date: 27/4/2016
+   Last Modified Date: 28/4/2016
    version: 1.2
 		1.0 - Initall Student Class creation 
 		1.1 - Adding db communication to write Student to db 
 		1.2 - Create Dbase class to handle all db query, modify student in accordance  */
- 
-	class Student
+ 	//
+include('dbase.php');
+	
+	class Student extends dbase
 	{
-
-		require ("dbase.php")
 
 		/* Class variables */
 		private $StudID;
@@ -80,21 +80,19 @@
 			return $this->password;
 		}
 
-		function addStudent()//$this->StudID, $this->fname, $this->lname, $this->email, $this->phone, $this->password)
-		{
-			
-			$query = "INSERT INTO STUDENT (STUDID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
+		function addStudent(){
 			$sqltable = "STUDENT";
+			$query = "INSERT INTO STUDENT (STUDID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
 			WriteToDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
 		}
 
-		function deleteStudent($this->StudID){
+		function deleteStudent(){
 			$sqltable = "STUDENT";
-			$query = "DELETE FROM STUDENT WHERE STUDID = '$this->StudID'";
+			$query = "DELETE FROM STUDENT WHERE STUDID = '1060325'";
 			deleteFromDbase($sqltable, $query);
 		}
 
-		function updateStudent($this->StudID){
+		function updateStudent(){
 
 		}
 

@@ -1,13 +1,13 @@
 <?php
 /* Book Class for The Book Exchaange
-   Last Modified Date: 27/4/2016
+   Last Modified Date: 28/4/2016
    version: 1.0
 		1.0 - Initall Book Class creation with some db communication 
 		1.1 - Add set functions    */
 		 
 	class Book 
 	{
-		require ("dbase.php")
+		require ("dbase.php");
 
 		/* Class variables */
 		var $bookid;								/* the Book ID number in database */

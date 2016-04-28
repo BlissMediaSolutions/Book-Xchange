@@ -1,37 +1,49 @@
 <?php
 /* Database Class for The Book Exchaange
-   Last Modified Date: 27/4/2016
+   Last Modified Date: 28/4/2016
    version: 1.0
 		1.0 - Initall Database Class creation 
 		 */
- 
- 	require ("settings.php");			//database connection info
-	
-	Function WritetoDbase()
+ 	
+ 	include('settings.php');
+ 	class dbase
+ 	{
+ 	
+	Function WritetoDbase($sqltable, $query)
 		{
+			require ("settings.php");
 			$conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 			if (!$conn) 
 			{
 				echo "<p><font color='red'> Error Connecting to Database </font></p>";
 			} else 
 			{
-				$result = mysqli_query($conn, $sqlquery);
+				$result = mysqli_query($conn, $query);
 				if(!$result) 
 			{
 				echo "<p class=\"wrong\">Something is wrong with ", $query, "</p>";		
-			} else 
-			{
-				$studquery = "SELECT MAX(STUDID) FROM STUDENT";
-				$newresult = mysqli_query($conn, $studquery);
-				return mqsqli_fetch_row($newresult);
-				 
-				mysqli_free_result($newresult);
-			}
+			} 
+			echo "Database Updated";
 			mysqli_close($conn);
 		}
 
 		Function deleteFromDbase($sqltable, $query)
 		{
+			//DELETE FROM `BOOKXCHANGE`.`STUDENT` WHERE `STUDENT`.`STUDID` = 1060325;
+			require ("settings.php");
+			$conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+			if (!$conn) 
+			{
+				echo "<p><font color='red'> Error Connecting to Database </font></p>";
+			} else 
+			{
+				$result = mysqli_query($conn, $query);
+				if(!$result) 
+			{
+				echo "<p class=\"wrong\">Something is wrong with ", $query, "</p>";		
+			} 
+			echo "Record Deleted";
+			mysqli_close($conn);
 
 		}
 
@@ -39,4 +51,5 @@
 		{}
 
 	}
+}
 ?>
