@@ -25,8 +25,12 @@
 	$newStudent = new Student($StudID, $fname, $lname, $studemail, $studphone, $studpass);
 	$query = "INSERT INTO STUDENT (STUDID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ($StudID, '$fname', '$lname', '$studemail', '$studphone', '$studpass');";
 			$sqltable = "STUDENT";
-	$newStudent->WriteToDbase($sqltable, $query);
-	
-	echo "Congratulations ". $fname ." ".$lname ." you have been registered";
+	$writeResult = $newStudent->WriteToDbase($sqltable, $query);
+
+	if ($writeResult === true) {
+		echo "Congratulations ". $fname ." ".$lname ." you have been registered";
+	}else{
+		echo "Database connection failure.";
+	}
 	
 ?>
