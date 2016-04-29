@@ -16,8 +16,8 @@
     <![endif]-->
 </head>
 
-<body>
-	<nav class="navbar navbar-default" data-ng-controller="userController">
+<body data-ng-controller="userController">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -37,7 +37,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!---IF LOGGED IN-->
-					<li data-ng-show="user.authenticated" class="dropdown">
+					<li data-ng-show="user.authenticated === true" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstname}}<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="account.html">My Account</a></li>
@@ -45,50 +45,57 @@
 							<li><a href="" data-ng-click="performLogout()">Logout</a></li>
 						</ul>
 					</li>
-					<li data-ng-show="!user.authenticated"><a href="login.html">Login</a></li>
-					<li class="active" data-ng-show="!user.authenticated"><a href="register.html">Register</a></li>
+					<li data-ng-show="user.authenticated !== true"><a href="login.html">Login</a></li>
+					<li class="active" data-ng-show="user.authenticated !== true"><a href="register.html">Register</a></li>
 				</ul>
 
 			</div>
 		</div>
 	</nav>
-	<div class="container">
+	<div class="container" data-ng-init="newuser = {fname:'', lname:'', email:'', studentID:'', phone:'', password:'', passwordConfirm:'', acceptedTOS:false}">
 		<div class="row">
 			<div class="col-md-12">
-				<form>
+				<form novalidate="novalidate">
 					<fieldset>
 						<legend>Register</legend>
 						<div class="form-group">
 							<label for="inputGivenName">Given Name</label>
-							<input type="text" class="form-control" id="inputGivenName" name="fname" placeholder="Firstname" required="required"/>
+							<input type="text" class="form-control" id="inputGivenName" name="fname" data-ng-model="newuser.fname" placeholder="Firstname" required="required" />
 						</div>
 						<div class="form-group">
 							<label for="inputSurname">Surname</label>
-							<input type="text" class="form-control" id="inputSurname" name="lname" placeholder="Surname" required="required"/>
+							<input type="text" class="form-control" id="inputSurname" name="lname" data-ng-model="newuser.lname" placeholder="Surname" required="required" />
 						</div>
 						<div class="form-group">
 							<label for="inputEmail">Email address</label>
-							<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required="required"/>
+							<input type="email" class="form-control" id="inputEmail" name="email" data-ng-model="newuser.email" placeholder="Email" required="required" />
+						</div>
+						<div class="form-group">
+							<label for="inputEmail">Student ID</label>
+							<input type="text" class="form-control" id="inputStudentID" name="studentID" data-ng-model="newuser.studentID" placeholder="Student ID" required="required" />
 						</div>
 						<div class="form-group">
 							<label for="inputEmail">Phone number</label>
-							<input type="tel" class="form-control" id="inputPhone" name="phone" placeholder="Phone" required="required"/>
+							<input type="tel" class="form-control" id="inputPhone" name="phone" data-ng-model="newuser.phone" placeholder="Phone" required="required" />
 						</div>
 						<div class="form-group">
 							<label for="inputPassword">Password</label>
-							<input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required="required"/>
+							<input type="password" class="form-control" id="inputPassword" name="password" data-ng-model="newuser.password" placeholder="Password" required="required" />
 						</div>
 						<div class="form-group">
 							<label for="inputPasswordConfirm">Password</label>
-							<input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Re-enter Password" required="required"/>
+							<input type="password" class="form-control" id="inputPasswordConfirm" name="passwordConfirm" data-ng-model="newuser.passwordConfirm" placeholder="Re-enter Password" required="required" />
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" required="required"/> I agree to the <a href="#">terms and conditions</a>.
+								<input type="checkbox" required="required" data-ng-model="newuser.acceptedTOS" /> I agree to the <a href="#">terms and conditions</a>.
 							</label>
 						</div>
 					</fieldset>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<div class="form-group pull-right">
+						<button class="btn btn-danger" type="reset">Reset</button>
+						<button data-ng-click="registerUser(newuser)" class="btn btn-primary">Submit</button>
+					</div>
 				</form>
 			</div>
 		</div>

@@ -8,37 +8,35 @@
 */
 	include('student.php');
 
-	// $studpass = $_GET['password'];
-	// $repeatPass = $_GET['repeatPassword'];
-	// if ($studpass !== $repeatPass) {
-	// 	echo "Password confirmation does not match.";
-	// 	exit;
-	// }
+	$studpass = $_GET['password'];
+	$repeatPass = $_GET['repeatPassword'];
+	if ($studpass !== $repeatPass) {
+		// echo "Password confirmation does not match.";
+		exit;
+	}
 
-	//$StudID = $_GET['studid'];
-	//$fname = $_GET['fname'];
-	//$lname = $_GET['lname'];
-	//$studemail = $_GET['email'];
-	//$studphone = $_GET['phone'];
+	$StudID = $_GET['studid'];
+	$fname = $_GET['fname'];
+	$lname = $_GET['lname'];
+	$studemail = $_GET['email'];
+	$studphone = $_GET['phone'];
 
-	$StudID = "1060325";
-	$fname = "Danielle";
-	$lname = "Walker";
-	$studemail = "danielle@bliss.net.au";
-	$studphone = "1234567890";
-	$studpass = "password";
 	$uniqueUID = hash_hmac('sha512', $studemail, 'fooCoo-n4wo&ung_ee4kaekeXaesae');
-	echo $uniqueUID;
 
 	$newStudent = new Student($StudID, $fname, $lname, $studemail, $studphone, $studpass);
 	$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ($StudID, '$uniqueUID', '$fname', '$lname', '$studemail', '$studphone', '$studpass');";
-			$sqltable = "STUDENT";
+	$sqltable = "STUDENT";
 	$writeResult = $newStudent->WriteToDbase($sqltable, $query);
 
+	header('Content-type: application/json');
+	$returnBody = array( 'result' => $writeResult ? 'ok' : 'bad');
+
 	if ($writeResult === true) {
-		echo "Congratulations ". $fname ." ".$lname ." you have been registered";
+		$studentMap = $newStudent->mapRepresentation();
+		$returnBody["user"] = $studentMap;
 	}else{
-		echo "Database connection failure.";
+		header('HTTP/1.1 400 Bad Request');
 	}
+	echo json_encode( $returnBody );
 	
 ?>

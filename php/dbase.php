@@ -18,11 +18,10 @@ class dbase
             return false;
         } else {
             $result = mysqli_query($conn, $query);
-            if (!$result) {
-                echo "<p class=\"wrong\">Something is wrong with ", $query, "</p>";
-            }
-            echo "Database Updated";
             mysqli_close($conn);
+            if (!$result) {
+                return false;
+            }
             return true;
         }
         
@@ -48,6 +47,7 @@ class dbase
             }
             
         }
+        
     }
 }
 ?>

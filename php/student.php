@@ -1,10 +1,11 @@
 <?php
 /* Student Class for The Book Exchaange
    Last Modified Date: 28/4/2016
-   version: 1.2
+   version: 1.3
 		1.0 - Initall Student Class creation 
 		1.1 - Adding db communication to write Student to db 
-		1.2 - Create Dbase class to handle all db query, modify student in accordance  */
+		1.2 - Create Dbase class to handle all db query, modify student in accordance
+		1.3 - Allow retrieval of a map/array representation of a student object.  */
  	//
 include('dbase.php');
 	
@@ -20,7 +21,7 @@ include('dbase.php');
 		private $password;
 
 		/* Class Constructor */
-		function _construct ($studentID, $firstname, $surname, $studemail, $studphone, $studpass)
+		public function __construct ($studentID, $firstname, $surname, $studemail, $studphone, $studpass)
 		{
 			$this->StudID = $studentID;
 			$this->fname = $firstname;
@@ -31,7 +32,7 @@ include('dbase.php');
 		}
 
 		/* Class Destructor */
-		function _destruct(){
+		function __destruct(){
 
 		}
 		
@@ -45,7 +46,7 @@ include('dbase.php');
 		}
 
 		function getFirstName(){
-			return $this->fname;
+			return 'fn:' . '(' . $this->fname . ')';
 		}
 
 		function setLastName($par){
@@ -78,6 +79,18 @@ include('dbase.php');
 
 		function getPassword(){
 			return $this->password;
+		}
+
+		function mapRepresentation(){
+			return array( 
+				'firstname' => $this->fname, 
+				'surname' => $this->lname, 
+				'email' => $this->email, 
+				'studentID' => $this->StudID, 
+				'telephone' => $this->phone, 
+				'authenticated' => true 
+			);
+			// return array( 'firstname' => $this->getFirstName() );
 		}
 
 		function addStudent(){
