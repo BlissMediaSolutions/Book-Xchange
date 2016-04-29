@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS XCHANGE, BOOK, STUDENT;
 
 CREATE TABLE STUDENT (
 	STUDID INT NOT NULL,						/* Swinburne Student Id No */
+	UUID CHAR(128) NOT NULL,					/* Unique user identifier, salted SHA512 hash */
 	FIRSTNAME VARCHAR(20) NOT NULL,				/* Student First Name */
 	LASTNAME VARCHAR(20) NOT NULL,				/* Student Last/surname */
 	EMAIL VARCHAR(40) NOT NULL,					/* Email address - must end with "swin.edu.au" */
