@@ -3,7 +3,7 @@
 
 Status: Incomplete, Under Development
 
-Developed with HTML5, CSS3, javascript, Angular.js, AJAX, PHP & SQL.
+Developed with HTML5, CSS3, javascript, Angular.js, AJAX/JSON, PHP & SQL.
 
 ##### Notes: 
 - SQL syntax is design for use with MySQL & MariaDB
