@@ -19,6 +19,5 @@ Developed with HTML5, CSS3, javascript, Angular.js, AJAX, PHP & SQL.
 ##### Developed by:
 - Danielle Walker (1060325)
 - Terry Lewis (9998373)
-- Christian Fulgueras (9713417)
 - Kushani Liyanage (100056391)
 
