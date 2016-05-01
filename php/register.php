@@ -11,7 +11,7 @@
 	$studpass = $_GET['password'];
 	$repeatPass = $_GET['repeatPassword'];
 	if ($studpass !== $repeatPass) {
-		// echo "Password confirmation does not match.";
+		 echo "Password confirmation does not match.";
 		exit;
 	}
 
@@ -20,6 +20,13 @@
 	$lname = $_GET['lname'];
 	$studemail = $_GET['email'];
 	$studphone = $_GET['phone'];
+
+	//	$StudID = "1060325";
+ +	//$fname = "Danielle";
+ +	//$lname = "Walker";
+ +	//$studemail = "danielle@bliss.net.au";
+ +	//$studphone = "1234567890";
+ +	//$studpass = "password";
 
 	$uniqueUID = hash_hmac('sha512', $studemail, 'fooCoo-n4wo&ung_ee4kaekeXaesae');
 

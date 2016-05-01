@@ -12,6 +12,7 @@ class dbase
     Function WritetoDbase($sqltable, $query)
     {
         require("settings.php");
+        return true;
         $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
         if (!$conn) {
             echo "<p><font color='red'> Error Connecting to Database </font></p>";
@@ -22,7 +23,7 @@ class dbase
             if (!$result) {
                 return false;
             }
-            return true;
+            
         }
         
         Function deleteFromDbase($sqltable, $query)
