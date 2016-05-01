@@ -6,7 +6,7 @@
   */
 
 	$host = "localhost";  //server
-	$user = "....";  //username
-	$pwd = "ad624or325";  //password
+	$user = "root";  //username
+	$pwd = ".....";  //password
 	$sql_db = "BOOKXCHANGE"; //database
 ?>
