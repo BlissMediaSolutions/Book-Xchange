@@ -1,13 +1,13 @@
 <?php
 /* Student Class for The Book Exchaange
-   Last Modified Date: 28/4/2016
+   Last Modified Date: 06/05/2016
    version: 1.3
 		1.0 - Initall Student Class creation 
 		1.1 - Adding db communication to write Student to db 
 		1.2 - Create Dbase class to handle all db query, modify student in accordance
 		1.3 - Allow retrieval of a map/array representation of a student object.  */
  	//
-include('dbase.php');
+	include('dbase.php');
 	
 	class Student extends dbase
 	{
@@ -93,20 +93,25 @@ include('dbase.php');
 			// return array( 'firstname' => $this->getFirstName() );
 		}
 
+		//Add new Student to Database
 		function addStudent(){
 			$sqltable = "STUDENT";
 			$query = "INSERT INTO STUDENT (STUDID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
-			WriteToDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
+			WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
 		}
 
-		function deleteStudent(){
+		//Delete a Student from the Database
+		function deleteStudent($par){
 			$sqltable = "STUDENT";
-			$query = "DELETE FROM STUDENT WHERE STUDID = '1060325'";
-			deleteFromDbase($sqltable, $query);
+			$query = "DELETE FROM STUDENT WHERE STUDID = '$par'";
+			WriteDelDbase($sqltable, $query);
 		}
 
-		function updateStudent(){
-
+		//Update the Student Informtation in the database for a specific student.
+		function updateStudent($this->StudID){
+			$sqltable = "STUDENT";
+			$query = "UPDATE"
+			WriteDelDbase($sqltable, $query);
 		}
 
 		

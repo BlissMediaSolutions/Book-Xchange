@@ -1,24 +1,25 @@
 <?php
 /* Book Class for The Book Exchaange
-   Last Modified Date: 28/4/2016
+   Last Modified Date: 06/05/2016
    version: 1.0
 		1.0 - Initall Book Class creation with some db communication 
 		1.1 - Add set functions    */
 		 
-	class Book 
-	{
-		require ("dbase.php");
+	include('dbase.php');
 
+	class Book extends dbase
+	{
+		
 		/* Class variables */
-		var $bookid;								/* the Book ID number in database */
-		var $name;									/* The Book Name */
-		var $isbn;									/* The Book ISBN */
-		var $author;								/* The book author */
-		var $publish;								/* The book publisher */
-		var $edit;									/* The book edition */
+		private $bookid;								/* the Book ID number in database */
+		private $name;									/* The Book Name */
+		private $isbn;									/* The Book ISBN */
+		private $author;								/* The book author */
+		private $publish;								/* The book publisher */
+		private $edit;									/* The book edition */
 		
 		/* Class Constructor */
-		function _construct ($bname, $bisbn, $bauthor, $bpublish, $bedit)
+		function __construct ($bname, $bisbn, $bauthor, $bpublish, $bedit)
 		{
 			$this->name = $bname;
 			$this->isbn = $bisbn;
@@ -28,7 +29,7 @@
 		}
 
 		/* Class Destructor */
-		function _destruct(){
+		function __destruct(){
 
 		}
 		
@@ -81,55 +82,31 @@
 			return $this->edit;
 		}
 
-		/* Add's a new Book to the database & get's the Book ID from the database */
-		function addBoook($bname, $bisbn, $bauthor, $bpublish, $bedit) 
+		/* Add's a new Book to the database */
+		function addBoook() 
 		{
 			$sqltable = "BOOK";
-			$query = "INSERT INTO BOOK (BOOKNAME, BOOKISBN, BOOKAUTHOR, BOOKPUB, BOOKEDIT) VALUES ('$bname', '$bisbn', '$bauthor', '$bpublish', '$bedit')";
-			
-			WriteToDbase($sqltable, $query);			
+			$query = "INSERT INTO BOOK (BOOKNAME, BOOKISBN, BOOKAUTHOR, BOOKPUB, BOOKEDIT) VALUES ('$this->name', '$this->isbn', '$this->author', '$this->publish', '$this->edit')";
+			WriteDelDbase($sqltable, $query); 			
 		}
 
 		/* Deleting a Book from the Database */
-		function deleteBook($bname, $bisbn, $bauthor, $bpublish, $bedit) {
+		function deleteBook($par) 
+		{
 			$sqltable = "BOOK";
-			$query = "DELETE FROM BOOK WHERE BOOKID = '$this->BOOKID'";
+			$query = "DELETE FROM BOOK WHERE BOOKID = '$par'";
+			WriteDelDbase($sqltable, $query);
 		}
 
-		function updateBook($this->bookid){
+		function updateBook($par)
+		{
 
 		}
 
-		function findBookInDB()
+		function findBookInDB($this->bookid)
 		{}
 
 	} /* End Book class */
 
-	//function addBookComms($sqlquesry)
-	//{
-	//	require_once ("settings.php");//connection info 
-	//	$conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-	//	if (!$conn) 
-	//	{
-	//		echo "<p><font color='red'> Error Connecting to Database </font></p>";
-	//	} else 
-	//	{
-	//		$result = mysqli_query($conn, $sqlquery);
-	//		if(!$result) 
-	//		{
-	//			echo "<p class=\"wrong\">Something is wrong with ", $query, "</p>";			//	//
-	//		} else 
-	//		{
-	//			$bookquery = "SELECT MAX(BOOKID) FROM BOOK";
-	//			$newresult = mysqli_query($conn, $bookquery);
-	//			//return $par = mysqli_query($conn, $custquery)
-	//			return mqsqli_fetch_row($newresult);
-	//			//$BookID = mysqli_fetch_row($newresult); 
-	//			mysqli_free_result($newresult);
-	//		}
-	//	}
-	//	mysqli_close($conn);
-	//}
-
-	//}
+	
 ?>
