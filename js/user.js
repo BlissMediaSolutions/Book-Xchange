@@ -14,6 +14,8 @@ app.controller("userController", function ($scope, $http, $location) {
 	$scope.user = {
 		'authenticated': false
 	};
+	
+	$scope.invalidPassword = false;
 
 	$scope.init = function () {
 		$scope.loadUserInfo();
@@ -77,6 +79,39 @@ app.controller("userController", function ($scope, $http, $location) {
 			});
 		}
 		$scope.user.authenticated = true;
+	};
+	
+	$scope.loginUser = function (login) {
+		if (!login.email){
+			alert("Please enter an email address.");
+		}else if(!login.password){
+			alert("Please enter a password.");
+		}else{
+			$http({
+				url: 'php/login.php',
+				method: "POST", 
+				params: {
+					email: login.email, 
+					password: login.password
+				}
+			}).then(function successCallback(response) {
+				var data = response.data;
+				if(data.result === "ok"){
+					$scope.completeLogin(data.user);
+					window.location.replace('index.html');
+				}else{
+					$scope.invalidPassword = true;
+				}
+			}, function errorCallback(response) {
+				console.log(response);
+			});
+		}
+	};
+	
+	$scope.getFullname = function (){
+		var fn = $scope.user.firstname;
+		var ln = $scope.user.surname;
+		return fn + " " + ln;
 	};
 
 	$scope.init();

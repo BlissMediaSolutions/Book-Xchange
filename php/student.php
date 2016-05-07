@@ -18,18 +18,58 @@
 		private $lname;
 		private $email;
 		private $phone;
+		private $uuid;
 		private $password;
+		private $authenticated;
+		private $status;
 
 		/* Class Constructor */
-		public function __construct ($studentID, $firstname, $surname, $studemail, $studphone, $studpass)
+		public function __construct ()
 		{
+			$get_arguments       = func_get_args();
+	        $number_of_arguments = func_num_args();
+
+	        // call a constructor in the format of __constructX, where X is the number of agruments.
+	        if (method_exists($this, $method_name = '__construct'.$number_of_arguments)) {
+	            call_user_func_array(array($this, $method_name), $get_arguments);
+	        }else{
+	        	error_log("Undefined function: " . '__construct' . $number_of_arguments . '  in class: ' . get_class($this), 0);
+	        }
+		}
+
+		public function __construct6($studentID, $firstname, $surname, $studemail, $studphone, $studpass) {
 			$this->StudID = $studentID;
 			$this->fname = $firstname;
 			$this->lname = $surname;
 			$this->email = $studemail;
 			$this->phone = $studphone;
 			$this->password = $studpass;
-		}
+
+			$uniqueUID = hash_hmac('sha512', $this->email, 'fooCoo-n4wo&ung_ee4kaekeXaesae');
+			$this->uuid = $uniqueUID;
+	    }
+
+		public function __construct2($studentEmail, $password) {
+			$sqltable = "STUDENT";
+			$query = "SELECT * FROM STUDENT WHERE email='$studentEmail' AND password='$password'";
+			$values = $this->readFromDbase($sqltable, $query);
+
+			if ($values !== false && $values[0] != null) {
+				$student = $values[0];
+				$this->StudID = $student['STUDID'];
+				$this->fname = $student['FIRSTNAME'];
+				$this->lname = $student['LASTNAME'];
+				$this->email = $student['EMAIL'];
+				$this->phone = $student['PHONE'];
+				$this->uuid = $student['UUID'];
+				$this->authenticated = true;
+			}else{
+				$this->authenticated = false;
+			}
+	    }
+
+		// public function __construct (){
+		// }
 
 		/* Class Destructor */
 		function __destruct(){
@@ -82,6 +122,14 @@
 			return $this->password;
 		}
 
+		function getAuthenticated(){
+			return $this->authenticated;
+		}
+
+		function getStatus(){
+			return $this->status;
+		}
+
 		function mapRepresentation(){
 			return array( 
 				'firstname' => $this->fname, 
@@ -97,22 +145,25 @@
 		//Add new Student to Database
 		function addStudent(){
 			$sqltable = "STUDENT";
-			$query = "INSERT INTO STUDENT (STUDID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
-			WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
+			$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$uniqueUID x', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
+			$result = $this->WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
+			$this->authenticated = $result;
+
+			return $result;
 		}
 
 		//Delete a Student from the Database
 		function deleteStudent($par){
 			$sqltable = "STUDENT";
 			$query = "DELETE FROM STUDENT WHERE STUDID = '$par'";
-			WriteDelDbase($sqltable, $query);
+			return $this->WriteDelDbase($sqltable, $query);
 		}
 
 		//Update the Student Informtation in the database for a specific student.
-		function updateStudent($this->StudID){
+		function updateStudent(){
 			$sqltable = "STUDENT";
-			$query = "UPDATE"
-			WriteDelDbase($sqltable, $query);
+			$query = "UPDATE";
+			return $this->WriteDelDbase($sqltable, $query);
 		}
 
 		
