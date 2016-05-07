@@ -8,13 +8,6 @@
 */
 	include('student.php');
 
-	// $studpass = $_GET['password'];
-	// $repeatPass = $_GET['repeatPassword'];
-	// if ($studpass !== $repeatPass) {
-	// 	echo "Password confirmation does not match.";
-	// 	exit;
-	// }
-
 	$studemail = $_GET['email'];
 	$studpass = $_GET['password'];
 
@@ -25,14 +18,5 @@
 		$returnBody["user"] = $newStudent->mapRepresentation();
 	}
 	echo json_encode( $returnBody );
-
-	// $query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ($StudID, '$uniqueUID', '$fname', '$lname', '$studemail', '$studphone', '$studpass');";
-	// 		$sqltable = "STUDENT";
-	// $writeResult = $newStudent->WriteToDbase($sqltable, $query);
-	// if ($writeResult === true) {
-	// 	echo "Congratulations ". $fname ." ".$lname ." you have been registered";
-	// }else{
-	// 	echo "Database connection failure.";
-	// }
 	
 ?>
