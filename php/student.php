@@ -46,7 +46,8 @@
 		}
 
 		function getFirstName(){
-			return 'fn:' . '(' . $this->fname . ')';
+			return $this->fname;
+			//return 'fn:' . '(' . $this->fname . ')';
 		}
 
 		function setLastName($par){

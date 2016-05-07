@@ -15,10 +15,12 @@ class dbase
         require("settings.php");
         //return true;
         $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
-        if (!$conn) {
+        if (!$conn) 
+        {
             echo "<p><font color='red'> Error Connecting to Database </font></p>";
             return false;
-        } else {
+        } else 
+        {
             $result = mysqli_query($conn, $query);
             mysqli_close($conn);
             if (!$result) {
@@ -34,22 +36,23 @@ class dbase
         $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
         if (!$conn) {
             echo "<p><font color='red'> Error Connecting to Database </font></p>";
-        } else {
+        } else 
+        {
             $result = mysqli_query($conn, $query);
-            if (!$result) {
+            if (!$result) 
+            {
                 echo "<p class=\"wrong\">Something is wrong with ", $query, "</p>";
             }
                 echo "Record Deleted";
                 mysqli_close($conn);
                 
-            }
-            
-            function SearchDbase()
-            {
-            }
-            
         }
         
-    }
+    }    
+            
+    function SearchDbase()
+    {}
+            
+     
 }
 ?>
