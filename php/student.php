@@ -21,6 +21,7 @@
 		private $uuid;
 		private $password;
 		private $authenticated;
+		private $status;
 
 		/* Class Constructor */
 		public function __construct ()
@@ -122,6 +123,10 @@
 
 		function getAuthenticated(){
 			return $this->authenticated;
+		}
+
+		function getStatus(){
+			return $this->status;
 		}
 
 		function mapRepresentation(){
