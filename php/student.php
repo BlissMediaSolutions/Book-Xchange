@@ -139,7 +139,6 @@
 				'telephone' => $this->phone, 
 				'authenticated' => true 
 			);
-			// return array( 'firstname' => $this->getFirstName() );
 		}
 
 		//Add new Student to Database

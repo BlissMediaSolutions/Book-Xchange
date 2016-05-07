@@ -82,12 +82,22 @@
 			return $this->edit;
 		}
 
+		function mapRepresentation(){
+			return array( 
+				'title' => $this->name, 
+				'isbn' => $this->isbn, 
+				'author' => $this->author, 
+				'publisher' => $this->publish, 
+				'edition' => $this->edit
+			);
+		}
+
 		/* Add's a new Book to the database */
-		function addBoook() 
+		function addBook() 
 		{
 			$sqltable = "BOOK";
 			$query = "INSERT INTO BOOK (BOOKNAME, BOOKISBN, BOOKAUTHOR, BOOKPUB, BOOKEDIT) VALUES ('$this->name', '$this->isbn', '$this->author', '$this->publish', '$this->edit')";
-			WriteDelDbase($sqltable, $query); 			
+			return $this->WriteDelDbase($sqltable, $query);		
 		}
 
 		/* Deleting a Book from the Database */
@@ -103,7 +113,7 @@
 
 		}
 
-		function findBookInDB($this->bookid)
+		function findBookInDB(/*$this->bookid*/)
 		{}
 
 	} /* End Book class */

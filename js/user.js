@@ -7,7 +7,6 @@
 
 var app = angular.module("bookXChange", []);
 
-//app.controller("userController", function ($scope, $http) {
 app.controller("userController", function ($scope, $http, $location) {
 
 
