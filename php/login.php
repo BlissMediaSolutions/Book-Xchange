@@ -15,18 +15,24 @@
 	// 	exit;
 	// }
 
-	$studemail = _POST['email'];
-	$studpass = _POST['password'];
+	$studemail = $_GET['email'];
+	$studpass = $_GET['password'];
 
-	$newStudent = new Student($StudID, $fname, $lname, $studemail, $studphone, $studpass);
-	$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ($StudID, '$uniqueUID', '$fname', '$lname', '$studemail', '$studphone', '$studpass');";
-			$sqltable = "STUDENT";
-	$writeResult = $newStudent->WriteToDbase($sqltable, $query);
-
-	if ($writeResult === true) {
-		echo "Congratulations ". $fname ." ".$lname ." you have been registered";
-	}else{
-		echo "Database connection failure.";
+	$newStudent = new Student($studemail, $studpass);
+	$loginResult = $newStudent->getAuthenticated();
+	$returnBody = array( 'result' => $loginResult ? 'ok' : 'bad');
+	if ($loginResult === true) {
+		$returnBody["user"] = $newStudent->mapRepresentation();
 	}
+	echo json_encode( $returnBody );
+
+	// $query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ($StudID, '$uniqueUID', '$fname', '$lname', '$studemail', '$studphone', '$studpass');";
+	// 		$sqltable = "STUDENT";
+	// $writeResult = $newStudent->WriteToDbase($sqltable, $query);
+	// if ($writeResult === true) {
+	// 	echo "Congratulations ". $fname ." ".$lname ." you have been registered";
+	// }else{
+	// 	echo "Database connection failure.";
+	// }
 	
 ?>
