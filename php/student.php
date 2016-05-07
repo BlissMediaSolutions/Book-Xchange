@@ -96,22 +96,23 @@
 		//Add new Student to Database
 		function addStudent(){
 			$sqltable = "STUDENT";
-			$query = "INSERT INTO STUDENT (STUDID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
-			WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
+			$uniqueUID = hash_hmac('sha512', $this->email, 'fooCoo-n4wo&ung_ee4kaekeXaesae');
+			$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$uniqueUID x', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
+			return $this->WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
 		}
 
 		//Delete a Student from the Database
 		function deleteStudent($par){
 			$sqltable = "STUDENT";
 			$query = "DELETE FROM STUDENT WHERE STUDID = '$par'";
-			WriteDelDbase($sqltable, $query);
+			return $this->WriteDelDbase($sqltable, $query);
 		}
 
 		//Update the Student Informtation in the database for a specific student.
-		function updateStudent($this->StudID){
+		function updateStudent(){
 			$sqltable = "STUDENT";
-			$query = "UPDATE"
-			WriteDelDbase($sqltable, $query);
+			$query = "UPDATE";
+			return $this->WriteDelDbase($sqltable, $query);
 		}
 
 		

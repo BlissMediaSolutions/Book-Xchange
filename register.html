@@ -54,42 +54,52 @@
 	</nav>
 	<div class="container" data-ng-init="newuser = {fname:'', lname:'', email:'', studentID:'', phone:'', password:'', passwordConfirm:'', acceptedTOS:false}">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 well">
 				<form novalidate="novalidate">
 					<fieldset>
 						<legend>Register</legend>
-						<div class="form-group">
-							<label for="inputGivenName">Given Name</label>
-							<input type="text" class="form-control" id="inputGivenName" name="fname" data-ng-model="newuser.fname" placeholder="Firstname" required="required" />
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="inputGivenName">Given Name</label>
+									<input type="text" class="form-control" id="inputGivenName" name="fname" data-ng-model="newuser.fname" placeholder="Firstname" required="required" />
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-6">
+									<label for="inputSurname">Surname</label>
+									<input type="text" class="form-control" id="inputSurname" name="lname" data-ng-model="newuser.lname" placeholder="Surname" required="required" />
+								</div>
+							</div>
 						</div>
-						<div class="form-group">
-							<label for="inputSurname">Surname</label>
-							<input type="text" class="form-control" id="inputSurname" name="lname" data-ng-model="newuser.lname" placeholder="Surname" required="required" />
-						</div>
-						<div class="form-group">
-							<label for="inputEmail">Email address</label>
-							<input type="email" class="form-control" id="inputEmail" name="email" data-ng-model="newuser.email" placeholder="Email" required="required" />
-						</div>
-						<div class="form-group">
-							<label for="inputEmail">Student ID</label>
-							<input type="text" class="form-control" id="inputStudentID" name="studentID" data-ng-model="newuser.studentID" placeholder="Student ID" required="required" />
-						</div>
-						<div class="form-group">
-							<label for="inputEmail">Phone number</label>
-							<input type="tel" class="form-control" id="inputPhone" name="phone" data-ng-model="newuser.phone" placeholder="Phone" required="required" />
-						</div>
-						<div class="form-group">
-							<label for="inputPassword">Password</label>
-							<input type="password" class="form-control" id="inputPassword" name="password" data-ng-model="newuser.password" placeholder="Password" required="required" />
-						</div>
-						<div class="form-group">
-							<label for="inputPasswordConfirm">Password</label>
-							<input type="password" class="form-control" id="inputPasswordConfirm" name="passwordConfirm" data-ng-model="newuser.passwordConfirm" placeholder="Re-enter Password" required="required" />
-						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" required="required" data-ng-model="newuser.acceptedTOS" /> I agree to the <a href="#">terms and conditions</a>.
-							</label>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label for="inputEmail">Email address</label>
+									<input type="email" class="form-control" id="inputEmail" name="email" data-ng-model="newuser.email" placeholder="Email" required="required" />
+								</div>
+								<div class="form-group">
+									<label for="inputEmail">Student ID</label>
+									<input type="text" class="form-control" id="inputStudentID" name="studentID" data-ng-model="newuser.studentID" placeholder="Student ID" required="required" />
+								</div>
+								<div class="form-group">
+									<label for="inputEmail">Phone number</label>
+									<input type="tel" class="form-control" id="inputPhone" name="phone" data-ng-model="newuser.phone" placeholder="Phone" required="required" />
+								</div>
+								<div class="form-group">
+									<label for="inputPassword">Password</label>
+									<input type="password" class="form-control" id="inputPassword" name="password" data-ng-model="newuser.password" placeholder="Password" required="required" />
+								</div>
+								<div class="form-group">
+									<label for="inputPasswordConfirm">Password</label>
+									<input type="password" class="form-control" id="inputPasswordConfirm" name="passwordConfirm" data-ng-model="newuser.passwordConfirm" placeholder="Re-enter Password" required="required" />
+								</div>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" required="required" data-ng-model="newuser.acceptedTOS" /> I agree to the <a href="#">terms and conditions</a>.
+									</label>
+								</div>
+							</div>
 						</div>
 					</fieldset>
 					<div class="form-group pull-right">

@@ -6,6 +6,7 @@
 			this file called by register.html
 			it calls student.php to create a new student/obj & writes it to the db.
 */
+
 	include('student.php');
 
 	$studpass = $_GET['password'];
@@ -21,19 +22,8 @@
 	$studemail = $_GET['email'];
 	$studphone = $_GET['phone'];
 
-	//	$StudID = "1060325";
- +	//$fname = "Danielle";
- +	//$lname = "Walker";
- +	//$studemail = "danielle@bliss.net.au";
- +	//$studphone = "1234567890";
- +	//$studpass = "password";
-
-	$uniqueUID = hash_hmac('sha512', $studemail, 'fooCoo-n4wo&ung_ee4kaekeXaesae');
-
 	$newStudent = new Student($StudID, $fname, $lname, $studemail, $studphone, $studpass);
-	$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ($StudID, '$uniqueUID', '$fname', '$lname', '$studemail', '$studphone', '$studpass');";
-	$sqltable = "STUDENT";
-	$writeResult = $newStudent->WriteToDbase($sqltable, $query);
+	$writeResult = $newStudent->addStudent();
 
 	header('Content-type: application/json');
 	$returnBody = array( 'result' => $writeResult ? 'ok' : 'bad');
