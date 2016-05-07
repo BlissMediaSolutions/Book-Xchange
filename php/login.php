@@ -14,6 +14,7 @@
 	$newStudent = new Student($studemail, $studpass);
 	$loginResult = $newStudent->getAuthenticated();
 	$returnBody = array( 'result' => $loginResult ? 'ok' : 'bad');
+	
 	if ($loginResult === true) {
 		$returnBody["user"] = $newStudent->mapRepresentation();
 	}
