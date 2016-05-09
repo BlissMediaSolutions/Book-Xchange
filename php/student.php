@@ -23,7 +23,8 @@
 		private $authenticated;
 		private $status;
 
-		/* Class Constructor */
+		/* Main Class Constructor 					*/
+		/* Note: as PHP doesnt allow overloading constructors this hack/woraround was used to overload the constructor */
 		public function __construct ()
 		{
 			$get_arguments       = func_get_args();
@@ -37,6 +38,7 @@
 	        }
 		}
 
+		/* Overloaded Constructor */
 		public function __construct6($studentID, $firstname, $surname, $studemail, $studphone, $studpass) {
 			$this->StudID = $studentID;
 			$this->fname = $firstname;
@@ -49,23 +51,26 @@
 			$this->uuid = $uniqueUID;
 	    }
 
-		public function __construct2($studentEmail, $password) {
-			$sqltable = "STUDENT";
-			$query = "SELECT * FROM STUDENT WHERE email='$studentEmail' AND password='$password'";
-			$values = $this->readFromDbase($sqltable, $query);
+	    /* Overloaded Constructor */
+		public function __construct2($studentID, $password) {
+			//$sqltable = "STUDENT";
+			//$query = "SELECT * FROM STUDENT WHERE email='$studentEmail' AND password='$password'";
+			//$values = $this->readFromDbase($sqltable, $query);
 
-			if ($values !== false && $values[0] != null) {
-				$student = $values[0];
-				$this->StudID = $student['STUDID'];
-				$this->fname = $student['FIRSTNAME'];
-				$this->lname = $student['LASTNAME'];
-				$this->email = $student['EMAIL'];
-				$this->phone = $student['PHONE'];
-				$this->uuid = $student['UUID'];
-				$this->authenticated = true;
-			}else{
-				$this->authenticated = false;
-			}
+			//if ($values !== false && $values[0] != null) {
+			//	$student = $values[0];
+			//	$this->StudID = $student['STUDID'];
+				$this->StudID = $studentID;	
+				$this->password = $password;
+			//	$this->fname = $student['FIRSTNAME'];
+			//	$this->lname = $student['LASTNAME'];
+			//	$this->email = $student['EMAIL'];
+			//	$this->phone = $student['PHONE'];
+			//	$this->uuid = $student['UUID'];
+			//	$this->authenticated = true;
+			//}else{
+			//	$this->authenticated = false;
+			//}
 	    }
 
 		// public function __construct (){
@@ -162,6 +167,15 @@
 			$sqltable = "STUDENT";
 			$query = "UPDATE";
 			return $this->WriteDelDbase($sqltable, $query);
+		}
+
+		//function to find or check a Student exists within the datatbase
+		function findStudent($StudID, $password){
+			$sqltable = "STUDENT";
+			$query = "SELECT * FROM STUDENT WHERE STUDID='$StudID' AND PASSWORD='$password'";
+			return $this->readFromDbase($sqltable, $query);
+			//$values = $this->readFromDbase($sqltable, $query);
+
 		}
 
 		

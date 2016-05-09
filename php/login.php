@@ -1,6 +1,6 @@
 <?php
-	/* Student Registration for The Book Exchaange
-   Last Modified Date: 28/4/2016
+	/* Student Login for The Book Exchaange
+   Last Modified Date: 09/05/2016
    version: 1.0
 		1.0 - Creates Student Registration. 
 			this file called by register.html
@@ -8,11 +8,11 @@
 */
 	include('student.php');
 
-	$studemail = $_GET['email'];
+	$studID = $_GET['studid'];
 	$studpass = $_GET['password'];
 
-	$newStudent = new Student($studemail, $studpass);
-	$loginResult = $newStudent->getAuthenticated();
+	$newStudent = new Student($studID, $studpass);
+	$loginResult = $newStudent->findStudent($newStudent->StudID, $newStudent->password);
 	$returnBody = array( 'result' => $loginResult ? 'ok' : 'bad');
 	
 	if ($loginResult === true) {
