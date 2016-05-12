@@ -45,7 +45,7 @@ class StudentTest extends PHPUnit_Framework_TestCase
                 $this->assertEquals('Smith', $thisStudent->getLastName());
                 $this->assertEquals('fred@bliss.net.au', $thisStudent->getEmail());
                 $this->assertEquals('987654321', $thisStudent->getPhone());
-                $this->asserEquals('drowssap', $thisStudent->getPassword());
+                $this->assertEquals('drowssap', $thisStudent->getPassword());
 
 
 	}
