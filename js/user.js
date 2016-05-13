@@ -7,14 +7,61 @@
 
 var app = angular.module("bookXChange", []);
 
-app.controller("userController", function ($scope, $http, $location) {
+//var app = angular.module('bookXChange', [])
+//    .service('sharedProperties', function () {
+//        var user = {
+//			'authenticated': false
+//		};
+//
+//        return {
+//            getUser: function () {
+//                return user;
+//            },
+//            setUser: function(value) {
+//                user = value;
+//            }
+//        };
+//    });
 
+//app.service('sharedProperties', function () {
+//        var user = {
+//			'authenticated': false
+//		};
+//
+//        return {
+//            getUser: function () {
+//                return user;
+//            },
+//            setUser: function(value) {
+//                user = value;
+//            }
+//        };
+//});
 
-	$scope.user = {
+app.service("sharedProperties", function() {
+	var user = {
 		'authenticated': false
 	};
+    
+    return {
+        getUser: function() {
+            return user;
+        },
+        setUser: function(value) {
+            user = value;
+        }
+    }
+});
+
+app.controller("userController", function ($scope, $http, $location, sharedProperties) {
 	
 	$scope.invalidPassword = false;
+	
+	$scope.user = sharedProperties.getUser();
+	$scope.setUser = function(newUser) {
+        $scope.user = newUser;
+        sharedProperties.setUser(newUser);
+    };
 
 	$scope.init = function () {
 		$scope.loadUserInfo();
@@ -29,27 +76,31 @@ app.controller("userController", function ($scope, $http, $location) {
 //		$scope.user.telephone = "0400 000 000"
 //		$scope.user.fullname = $scope.user.firstname + ' ' + $scope.user.surname;
 		
+//			console.log(sharedProperties.getUser());
 		var savedUser = localStorage.getItem('useraccount');
 		if (savedUser){
-			$scope.user = JSON.parse(savedUser);
+			$scope.setUser(JSON.parse(savedUser));
 		}
 	};
 	
 	$scope.completeLogin = function (newUser) {
-		$scope.user = newUser;
+		console.log("completing login:");
+		console.log(newUser);
+		$scope.setUser(newUser);
 		localStorage.setItem('useraccount', JSON.stringify($scope.user));
 	}
 
 	$scope.performLogout = function () {
 //		alert("Logout stub.");
-		$scope.user = {'authenticated': false};
+		$scope.setUser({'authenticated': false});
 //		$location.path('../index.html');
 		window.location.replace('index.html');
 		localStorage.setItem('useraccount', null);
 	};
 
 	$scope.registerUser = function (registrant) {
-		console.log($scope.user);
+		var user = $scope.user;
+		console.log(user);
 		if (registrant.password !== registrant.passwordConfirm) {
 			alert("The provided passwords do not match.");
 		} else if (registrant.acceptedTOS === false) {
@@ -77,7 +128,7 @@ app.controller("userController", function ($scope, $http, $location) {
 				console.log(response);
 			});
 		}
-		$scope.user.authenticated = true;
+		user.authenticated = true;
 	};
 	
 	$scope.loginUser = function (login) {
@@ -108,9 +159,45 @@ app.controller("userController", function ($scope, $http, $location) {
 	};
 	
 	$scope.getFullname = function (){
-		var fn = $scope.user.firstname;
-		var ln = $scope.user.surname;
+		var user = sharedProperties.getUser();
+		var fn = user.firstname;
+		var ln = user.surname;
 		return fn + " " + ln;
+	};
+
+	$scope.init();
+
+});
+
+app.controller("bookController", function ($scope, $http, $location, $controller) {
+	
+	$scope.init = function () {
+		
+	};
+
+	$scope.addBook = function (book) {
+		console.log($scope.user);
+		if (book.password !== book.passwordConfirm) {
+			$http({
+				url: 'php/addbook.php',
+				method: "GET", 
+				params: {
+					title: book.title, 
+					isbn: book.isbn, 
+					author: book.author, 
+					publisher: book.publisher, 
+					edition: book.edition,
+					
+				}
+			}).then(function successCallback(response) {
+				var data = response.data;
+				if(data.result === "ok"){
+					$scope.completeLogin(data.user);
+				}
+			}, function errorCallback(response) {
+				console.log(response);
+			});
+		}
 	};
 
 	$scope.init();

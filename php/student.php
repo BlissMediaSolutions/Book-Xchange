@@ -146,6 +146,7 @@
 				'email' => $this->email, 
 				'studentID' => $this->StudID, 
 				'telephone' => $this->phone, 
+				'uuid' => $this->uuid,
 				'authenticated' => true 
 			);
 		}

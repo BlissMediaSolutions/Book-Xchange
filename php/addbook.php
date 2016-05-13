@@ -14,7 +14,7 @@
 	$bookauthor = $_GET['author'];
 	$bookpublisher = $_GET['publisher'];
 	$bookedition = $_GET['edition'];
-	// $uuid
+	$uuid = $_GET['uuid'];
 	// $bookcondition = $_GET['condition'];
 	// $bookcomments = $_GET['comments'];
 
