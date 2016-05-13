@@ -8,9 +8,7 @@
     convertNoticesToExceptions="true"
     convertWarningsToExceptions="true"
     processIsolation="false"
-    syntaxCheck="false"
-    <!-- bootstrap="test/bootstrap.php" -->
-    >
+    syntaxCheck="false">
     <testsuites>
   		<testsuite name="Book-Xchange Test Suite">
     		<directory>/tests/</directory>
