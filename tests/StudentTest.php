@@ -4,6 +4,7 @@ include('php/student.php');
 
 class StudentTest extends PHPUnit_Framework_TestCase
 {
+	//Function to run Unit Tests on the Student Class
 	public function testStudentCreate()
 	{
 	        //Testing our Hack version of Overloaded Constructors, with 2 different constructors
