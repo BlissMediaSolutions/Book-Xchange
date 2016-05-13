@@ -73,6 +73,11 @@
 			//}
 	    }
 
+	    /* Overloaded Constructor */
+		public function __construct1($uuid) {
+			$this->uuid = $uuid;	
+		}
+
 		// public function __construct (){
 		// }
 

@@ -14,11 +14,28 @@
 	$bookauthor = $_GET['author'];
 	$bookpublisher = $_GET['publisher'];
 	$bookedition = $_GET['edition'];
+	// $uuid
 	// $bookcondition = $_GET['condition'];
 	// $bookcomments = $_GET['comments'];
 
-	$newBook = new Book($booktitle, $bookisbn, $bookauthor, $bookpublisher, $bookedition);
-	$writeResult = $newBook->addBook();
+	$newBook = new Book($bookisbn);
+	$bookResult = $newBook->findBook($newBook->getBookISBN());
+
+	if (!$bookResult) {
+		$newBook = new Book($booktitle, $bookisbn, $bookauthor, $bookpublisher, $bookedition);
+		$bookResult = $newBook->addBook();
+	}
+
+	// haven't created xchange yet.
+	$writeResult = false;
+
+	// only add an Xchange item if the book was created or exists.
+	if ($bookResult === true) {
+		// create x-change
+		error_log("Added Xchange.");
+	}else{
+		error_log("Could not add new book.");
+	}
 
 	header('Content-type: application/json');
 	$returnBody = array( 'result' => $writeResult ? 'ok' : 'bad');

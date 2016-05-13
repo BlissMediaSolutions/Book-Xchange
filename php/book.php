@@ -18,14 +18,35 @@
 		private $publish;								/* The book publisher */
 		private $edit;									/* The book edition */
 		
-		/* Class Constructor */
-		function __construct ($bname, $bisbn, $bauthor, $bpublish, $bedit)
+		/* Main Class Constructor 					*/
+		/* Note: as PHP doesnt allow overloading constructors this hack/woraround was used to overload the constructor */
+		public function __construct ()
+		{
+			$get_arguments       = func_get_args();
+	        $number_of_arguments = func_num_args();
+
+	        // call a constructor in the format of __constructX, where X is the number of agruments.
+	        if (method_exists($this, $method_name = '__construct'.$number_of_arguments)) {
+	            call_user_func_array(array($this, $method_name), $get_arguments);
+	        }else{
+	        	error_log("Undefined function: " . '__construct' . $number_of_arguments . '  in class: ' . get_class($this), 0);
+	        }
+		}
+
+		/* Overloaded Constructor */
+		function __construct5 ($bname, $bisbn, $bauthor, $bpublish, $bedit)
 		{
 			$this->name = $bname;
 			$this->isbn = $bisbn;
 			$this->author = $bauthor;
 			$this->publish = $bpublish;
 			$this->edit = $bedit;
+		}
+
+		/* Overloaded Constructor */
+		function __construct1 ($bisbn)
+		{
+			$this->isbn = $bisbn;
 		}
 
 		/* Class Destructor */
@@ -115,6 +136,12 @@
 
 		function findBookInDB(/*$this->bookid*/)
 		{}
+
+		function findBook($isbn){
+			$sqltable = "BOOK";
+			$query = "SELECT * FROM BOOK WHERE BOOKISBN='$isbn'";
+			return $this->readFromDbase($sqltable, $query);
+		}
 
 	} /* End Book class */
 
