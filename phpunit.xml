@@ -1,0 +1,21 @@
+<phpunit 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
+	backupGlobals="false"
+    backupStaticAttributes="false"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
+    syntaxCheck="false"
+    <!-- bootstrap="test/bootstrap.php" -->
+    >
+    <testsuites>
+  		<testsuite name="Book-Xchange Test Suite">
+    		<directory>/tests/</directory>
+    		<!-- <file>/path/to/MyTest.php</file>
+    		<exclude>/path/to/exclude</exclude> -->
+  		</testsuite>
+	</testsuites>
+</phpunit>
