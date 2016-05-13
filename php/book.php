@@ -16,7 +16,7 @@
 		private $isbn;									/* The Book ISBN */
 		private $author;								/* The book author */
 		private $publish;								/* The book publisher */
-		private $edit;									/* The book edition */
+		private $edit;									/* The book edition - must be Integer */
 		
 		/* Class Constructor */
 		function __construct ($bname, $bisbn, $bauthor, $bpublish, $bedit)
@@ -32,12 +32,12 @@
 		function __destruct(){
 
 		}
-		
-		/* Class set/get functions */
-		function setBookID($par){
-			$this->bookid = $par;
-		}
+				
+		//function setBookID($par){
+		//	$this->bookid = $par;
+		//}
 
+		/* Class set/get functions */
 		function getBookID(){
 			return $this->bookid;
 		}
