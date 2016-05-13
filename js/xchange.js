@@ -1,42 +1,11 @@
 /**
- *	User class for Book Exchange
- *	Last edit date: 28.04.2016
+ *	Controller management class.
+ *	Last edit date: 14.05.2016
  *
- *	Purpose: Manage user information and interface it with AngularJS.
+ *	Purpose: Manage controllers and share variables between them.
  */
 
 var app = angular.module("bookXChange", []);
-
-//var app = angular.module('bookXChange', [])
-//    .service('sharedProperties', function () {
-//        var user = {
-//			'authenticated': false
-//		};
-//
-//        return {
-//            getUser: function () {
-//                return user;
-//            },
-//            setUser: function(value) {
-//                user = value;
-//            }
-//        };
-//    });
-
-//app.service('sharedProperties', function () {
-//        var user = {
-//			'authenticated': false
-//		};
-//
-//        return {
-//            getUser: function () {
-//                return user;
-//            },
-//            setUser: function(value) {
-//                user = value;
-//            }
-//        };
-//});
 
 app.service("sharedProperties", function() {
 	var user = {
@@ -69,14 +38,6 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 	};
 
 	$scope.loadUserInfo = function () {
-//		$scope.user.firstname = "John";
-//		$scope.user.surname = "Smith";
-//		$scope.user.email = "user@example.com";
-//		$scope.user.studentID = "12345678";
-//		$scope.user.telephone = "0400 000 000"
-//		$scope.user.fullname = $scope.user.firstname + ' ' + $scope.user.surname;
-		
-//			console.log(sharedProperties.getUser());
 		var savedUser = localStorage.getItem('useraccount');
 		if (savedUser){
 			$scope.setUser(JSON.parse(savedUser));
@@ -91,9 +52,7 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 	}
 
 	$scope.performLogout = function () {
-//		alert("Logout stub.");
 		$scope.setUser({'authenticated': false});
-//		$location.path('../index.html');
 		window.location.replace('index.html');
 		localStorage.setItem('useraccount', null);
 	};
