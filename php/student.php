@@ -7,7 +7,7 @@
 		1.2 - Create Dbase class to handle all db query, modify student in accordance
 		1.3 - Allow retrieval of a map/array representation of a student object.  */
  	//
-	include('dbase.php');
+	include_once('dbase.php');
 	
 	class Student extends dbase
 	{
@@ -22,6 +22,7 @@
 		private $password;
 		private $authenticated;
 		private $status;
+		private $sqlid;
 
 		/* Main Class Constructor 					*/
 		/* Note: as PHP doesnt allow overloading constructors this hack/woraround was used to overload the constructor */
@@ -72,6 +73,11 @@
 			//	$this->authenticated = false;
 			//}
 	    }
+
+	    /* Overloaded Constructor */
+		public function __construct1($uuidArg) {
+			$this->uuid = $uuidArg;
+		}
 
 		// public function __construct (){
 		// }
@@ -141,6 +147,7 @@
 				'email' => $this->email, 
 				'studentID' => $this->StudID, 
 				'telephone' => $this->phone, 
+				'uuid' => $this->uuid,
 				'authenticated' => true 
 			);
 		}
@@ -169,15 +176,44 @@
 			return $this->WriteDelDbase($sqltable, $query);
 		}
 
+		function populateStudentFromArray($array){
+			$this->StudID = $array['STUDID'];
+			$this->uuid = $array['UUID'];
+			$this->fname = $array['FIRSTNAME'];
+			$this->lname = $array['LASTNAME'];
+			$this->email = $array['EMAIL'];
+			$this->phone = $array['PHONE'];
+			$this->password = $array['PASSWORD'];
+		}
+
 		//function to find or check a Student exists within the datatbase
 		function findStudent($StudID, $password){
 			$sqltable = "STUDENT";
 			$query = "SELECT * FROM STUDENT WHERE STUDID='$StudID' AND PASSWORD='$password'";
-			return $this->readFromDbase($sqltable, $query);
+			$result = $this->readFromDbase($sqltable, $query);
+			if ($result !== false) {
+				$firstResult = $result[0];
+				$this->populateStudentFromArray($firstResult);
+				return true;
+			}
+			return false;
 			//$values = $this->readFromDbase($sqltable, $query);
 
 		}
 
+		function lookupStudentFromUUID(){
+			$sqltable = "STUDENT";
+			error_log("Looking up student...");
+			$query = "SELECT * FROM STUDENT WHERE UUID='$this->uuid'";
+			// error_log($query);
+			$result = $this->readFromDbase($sqltable, $query);
+			if ($result !== false) {
+				$firstResult = $result[0];
+				$this->populateStudentFromArray($firstResult);
+				return true;
+			}
+			return false;
+		}
 		
 
 	} /* End Class */

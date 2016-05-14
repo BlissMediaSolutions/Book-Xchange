@@ -5,15 +5,14 @@ version: 1.0
 1.0 - Initall Database Class creation 
 */
 
-include('settings.php');
+include_once('settings.php');
 abstract class dbase
 {
     
     //Function to Write,delete or Amend a record in the Database
-    Function WriteDelDbase($sqltable, $query)
+    Function WriteDelDbase($sqltable, $query, &$insertID = NULL)
     {
         require("settings.php");
-        //return true;
         $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
         if (!$conn) 
         {
@@ -22,6 +21,10 @@ abstract class dbase
         } else 
         {
             $result = mysqli_query($conn, $query);
+            if ($insertID !== NULL) {
+            	$insertID = mysqli_insert_id($conn);
+		    }
+
             mysqli_close($conn);
             if (!$result) {
                 return false;
@@ -48,10 +51,6 @@ abstract class dbase
             
         }
         
-        function SearchDbase()
-        {
-        }
-        
     }
 
     // function used to Read data from the database, if a result is found its added to an Array which is returned to the caller.
@@ -72,7 +71,11 @@ abstract class dbase
 	            $myArray[] = $row;
 		    }
 
-	        return $myArray;
+		    if (isset($myArray)) {
+	        	return $myArray;
+		    }
+
+		    return false;
 	    }
 	    
 	}
