@@ -7,6 +7,7 @@
 
 var app = angular.module("bookXChange", []);
 
+// allows sharing properties between controllers.
 app.service("sharedProperties", function () {
 	var user = {
 		'authenticated': false
@@ -22,9 +23,9 @@ app.service("sharedProperties", function () {
 	}
 });
 
+// handles user related management, logging in and out, loading the user from local storage, etc.
 app.controller("userController", function ($scope, $http, $location, sharedProperties) {
 
-	$scope.loginError = false;
 
 	$scope.user = sharedProperties.getUser();
 	$scope.setUser = function (newUser) {
@@ -129,6 +130,7 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 		}
 	};
 
+	
 	$scope.getFullname = function () {
 		var user = $scope.user;
 		var fn = user.firstname;
@@ -140,49 +142,55 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 
 });
 
+/**
+ * @brief Book controller handles book related functionality – used in sell.html.
+ */
 app.controller("bookController", function ($scope, $http, $location, $controller, sharedProperties, $timeout) {
 	
 	$scope.conditions = [{
-		id: -1,
-		name: 'Please Select...'
-	},{
-		id: 1,
-		name: 'Very Good'
+	id: -1
+	, name: 'Please Select...'
 	}, {
-		id: 2,
-		name: 'Good'
+	id: 1
+	, name: 'Very Good'
 	}, {
-		id: 3,
-		name: 'Average'
+	id: 2
+	, name: 'Good'
 	}, {
-		id: 4,
-		name: 'Poor'
+	id: 3
+	, name: 'Average'
 	}, {
-		id: 5,
-		name: 'Very Poor'
+	id: 4
+	, name: 'Poor'
+	}, {
+	id: 5
+	, name: 'Very Poor'
 	}];
 	
-	$scope.init = function () {
-
-	};
-
-	//	$scope.show
-	
+	/**
+	 * @brief Sets the listing error, which will be displayed on the sell.html page.
+	 */
 	$scope.setListingError = function(error){
 		$scope.showListingError = true;
 		$scope.showListingSuccess = false;
 		$scope.listingMessage = error;
 	}
 	
+	/**
+	 * @brief Sets the listing success message, which will be displayed on the sell.html page. This cancels out previous error messages.
+	 */
 	$scope.setListingSuccess = function(success){
 		$scope.showListingError = false;
 		$scope.showListingSuccess = true;
 		$scope.listingMessage = success;
 	}
 
+	/**
+	* @brief Adds an exchange and optionally a book to the database.
+	* @param [in] hashmap book The book object (JSON) to be added to the book database.
+	*/
 	$scope.addBook = function (book) {
 		var user = sharedProperties.getUser();
-//		console.log(user.uuid);
 		if (!book.title){
 			$scope.setListingError("Please enter a title.");
 		}else if(!book.publisher){
@@ -194,6 +202,7 @@ app.controller("bookController", function ($scope, $http, $location, $controller
 		}else if(!book.isbn){
 			$scope.setListingError("Please enter an ISBN.");
 		}else if(!book.condition || book.condition === $scope.conditions[0]){
+			// Book condition must exist and must not be 'Please select...'.
 			$scope.setListingError("Please select a condition.");
 		}else if(!user.uuid){
 			$scope.setListingError("Authorisation error.");
@@ -214,33 +223,42 @@ app.controller("bookController", function ($scope, $http, $location, $controller
 				var data = response.data;
 				if (data.result === "ok") {
 					$scope.setListingSuccess(data.message);
-	//				$timeout(function () {
-	//					window.location.replace('index.html');
-	//				}, 1000);
+					// redirect the user to the index page. Their listing was added.
+					// Allow them time to read the success message (one second).
+					$timeout(function () {
+						window.location.replace('index.html');
+					}, 1000);
 				} else {
 					$scope.setListingError(data.message);
 				}
 			}, function errorCallback(response) {
-				console.log(response);
+				if (response.data.message){
+					$scope.setListingError(data.message);
+				}else{
+					// We couldn't communicate with the PHP backend, the server is experiencing troubles.
+					$scope.setListingError("An internal server error occurred. Please try again.");
+				}
 			});
 		}
 	};
 
-	$scope.init();
-
 });
 
+/**
+ * @brief Handles book search functionality.
+ */
 app.controller("searchController", function ($scope, $http, $location, $controller, sharedProperties, $timeout) {
 	
 	$scope.searchResults = null;
 	$scope.searchedTerm = null;
 	
-	$scope.init = function () {
-		
-	};
-	
+	/**
+	 * @brief Some brief description.
+	 * @param [query] The term that is to be searched.
+	 * @return An array of books in JSON format, books have an additional mapping known as 'xchanges' which has listings for each book..
+	 */
 	$scope.searchBooks = function(query){
-		console.log(query);
+		// the last searched term is stored so it can be referenced on the search page.
 		$scope.searchedTerm = query;
 		$http({
 				url: 'php/search.php',
@@ -253,27 +271,13 @@ app.controller("searchController", function ($scope, $http, $location, $controll
 				var data = response.data;
 				if (data.result === "ok") {
 					$scope.searchResults = data.search_results;
-					console.log(data.searchResults);
 				} else {
+					// clear search results, this way the user knows the search went through.
 					$scope.searchResults = null;
 				}
 			}, function errorCallback(response) {
 				console.log(response);
 			});
 	}
-	
-	$scope.isCollpased = function(id){
-		console.log(id);
-//		return $(id).attr("aria-expanded");
-	}
 
-	$scope.init();
-
-});
-
-$('.list-group').on('click','> a', function(e) {
-   var $this = $(this);
-    $('.list-group').find('.active').removeClass('active');
-    $this.addClass('active');
-    
 });
