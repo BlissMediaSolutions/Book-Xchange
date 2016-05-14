@@ -5,7 +5,7 @@ version: 1.0
 1.0 - Initall Database Class creation 
 */
 
-include('settings.php');
+include_once('settings.php');
 abstract class dbase
 {
     
@@ -72,7 +72,11 @@ abstract class dbase
 	            $myArray[] = $row;
 		    }
 
-	        return $myArray;
+		    if (isset($myArray)) {
+	        	return $myArray;
+		    }
+
+		    return false;
 	    }
 	    
 	}

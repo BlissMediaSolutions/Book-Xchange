@@ -24,7 +24,7 @@ CREATE TABLE STUDENT (
 
 CREATE TABLE BOOK (
 	BOOKID INT NOT NULL AUTO_INCREMENT,
-	BOOKNAME VARCHAR(30) NOT NULL,				/* Book Name or title */
+	BOOKNAME VARCHAR(255) NOT NULL,				/* Book Name or title */
 	BOOKISBN VARCHAR(13) NOT NULL,				/* Book ISBN Number */
 	BOOKAUTHOR VARCHAR(30) NOT NULL,        	/* Book Author(s) */
 	BOOKPUB VARCHAR (30),						/* Book Publisher */

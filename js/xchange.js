@@ -118,7 +118,7 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 	};
 	
 	$scope.getFullname = function (){
-		var user = sharedProperties.getUser();
+		var user = $scope.user;
 		var fn = user.firstname;
 		var ln = user.surname;
 		return fn + " " + ln;
@@ -128,15 +128,17 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 
 });
 
-app.controller("bookController", function ($scope, $http, $location, $controller) {
+app.controller("bookController", function ($scope, $http, $location, $controller, sharedProperties) {
 	
 	$scope.init = function () {
 		
 	};
 
 	$scope.addBook = function (book) {
-		console.log($scope.user);
-		if (book.password !== book.passwordConfirm) {
+		console.log("ADDD D BOOOK.");
+//		if (book.password !== book.passwordConfirm) {
+		var user = sharedProperties.getUser();
+		console.log(user.uuid);
 			$http({
 				url: 'php/addbook.php',
 				method: "GET", 
@@ -146,17 +148,17 @@ app.controller("bookController", function ($scope, $http, $location, $controller
 					author: book.author, 
 					publisher: book.publisher, 
 					edition: book.edition,
-					
+					uuid: user.uuid
 				}
 			}).then(function successCallback(response) {
 				var data = response.data;
 				if(data.result === "ok"){
-					$scope.completeLogin(data.user);
+//					$scope.completeLogin(data.user);
 				}
 			}, function errorCallback(response) {
 				console.log(response);
 			});
-		}
+//		}
 	};
 
 	$scope.init();

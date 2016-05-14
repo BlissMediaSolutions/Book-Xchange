@@ -5,7 +5,7 @@
 		1.0 - Initall Book Class creation with some db communication 
 		1.1 - Add set functions    */
 		 
-	include('dbase.php');
+	include_once('dbase.php');
 
 	class Book extends dbase
 	{
@@ -53,7 +53,7 @@
 		function __destruct(){
 
 		}
-		
+
 		/* Class set/get functions */
 		function setBookID($par){
 			$this->bookid = $par;
@@ -140,7 +140,20 @@
 		function findBook($isbn){
 			$sqltable = "BOOK";
 			$query = "SELECT * FROM BOOK WHERE BOOKISBN='$isbn'";
-			return $this->readFromDbase($sqltable, $query);
+			$result = $this->readFromDbase($sqltable, $query);
+			if ($result !== false) {
+				$firstResult = $result[0];
+				$this->isbn 	=	$isbn; 
+				$this->name		= 	$firstResult['BOOKNAME'];
+				$this->author	= 	$firstResult['BOOKAUTHOR'];
+				$this->publish	= 	$firstResult['BOOKPUB'];
+				$this->edit		= 	$firstResult['BOOKEDIT'];
+				$this->bookid	= 	$firstResult['BOOKID'];
+
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 	} /* End Book class */

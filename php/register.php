@@ -7,7 +7,7 @@
 			it calls student.php to create a new student/obj & writes it to the db.
 */
 
-	include('student.php');
+	include_once('student.php');
 
 	$studpass = $_GET['password'];
 	$repeatPass = $_GET['repeatPassword'];

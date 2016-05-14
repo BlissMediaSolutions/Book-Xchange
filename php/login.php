@@ -6,7 +6,7 @@
 			this file called by register.html
 			it calls student.php to create a new student/obj & writes it to the db.
 */
-	include('student.php');
+	include_once('student.php');
 
 	$studID = $_GET['studid'];
 	$studpass = $_GET['password'];

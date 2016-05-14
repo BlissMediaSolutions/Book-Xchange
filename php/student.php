@@ -7,7 +7,7 @@
 		1.2 - Create Dbase class to handle all db query, modify student in accordance
 		1.3 - Allow retrieval of a map/array representation of a student object.  */
  	//
-	include('dbase.php');
+	include_once('dbase.php');
 	
 	class Student extends dbase
 	{
@@ -22,6 +22,7 @@
 		private $password;
 		private $authenticated;
 		private $status;
+		private $sqlid;
 
 		/* Main Class Constructor 					*/
 		/* Note: as PHP doesnt allow overloading constructors this hack/woraround was used to overload the constructor */
@@ -74,8 +75,8 @@
 	    }
 
 	    /* Overloaded Constructor */
-		public function __construct1($uuid) {
-			$this->uuid = $uuid;	
+		public function __construct1($uuidArg) {
+			$this->uuid = $uuidArg;
 		}
 
 		// public function __construct (){
@@ -154,7 +155,7 @@
 		//Add new Student to Database
 		function addStudent(){
 			$sqltable = "STUDENT";
-			$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$uniqueUID x', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
+			$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->uuid', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
 			$result = $this->WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
 			$this->authenticated = $result;
 
@@ -184,6 +185,25 @@
 
 		}
 
+		function lookupStudentFromUUID(){
+			$sqltable = "STUDENT";
+			error_log("Looking up student...");
+			$query = "SELECT * FROM STUDENT WHERE UUID='$this->uuid'";
+			// error_log($query);
+			$result = $this->readFromDbase($sqltable, $query);
+			if ($result !== false) {
+				$firstResult = $result[0];
+				$this->StudID = $firstResult['STUDID'];
+				$this->uuid = $firstResult['UUID'];
+				$this->fname = $firstResult['FIRSTNAME'];
+				$this->lname = $firstResult['LASTNAME'];
+				$this->email = $firstResult['EMAIL'];
+				$this->phone = $firstResult['PHONE'];
+				$this->password = $firstResult['PASSWORD'];
+				return true;
+			}
+			return false;
+		}
 		
 
 	} /* End Class */
