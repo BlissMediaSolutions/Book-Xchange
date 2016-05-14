@@ -148,7 +148,7 @@
 		//Add new Student to Database
 		function addStudent(){
 			$sqltable = "STUDENT";
-			$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$uniqueUID x', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
+			$query = "INSERT INTO STUDENT (STUDID, UUID, FIRSTNAME, LASTNAME, EMAIL, PHONE, PASSWORD) VALUES ('$this->StudID', '$this->uuid', '$this->fname', '$this->lname', '$this->email', '$this->phone', '$this->password')";
 			$result = $this->WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */
 			$this->authenticated = $result;
 
