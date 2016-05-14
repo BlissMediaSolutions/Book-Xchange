@@ -26,26 +26,6 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 
 	$scope.loginError = false;
 
-	$.getScript("js/toastr.min.js", function() {
-		toastr.options = {
-		  "closeButton": true,
-		  "debug": false,
-		  "newestOnTop": false,
-		  "progressBar": false,
-		  "positionClass": "toast-top-full-width",
-		  "preventDuplicates": true,
-		  "onclick": null,
-		  "showDuration": "300",
-		  "hideDuration": "1000",
-		  "timeOut": "5000",
-		  "extendedTimeOut": "1000",
-		  "showEasing": "swing",
-		  "hideEasing": "linear",
-		  "showMethod": "fadeIn",
-		  "hideMethod": "fadeOut"
-		};
-	});
-
 	$scope.user = sharedProperties.getUser();
 	$scope.setUser = function (newUser) {
 		$scope.user = newUser;
@@ -248,4 +228,52 @@ app.controller("bookController", function ($scope, $http, $location, $controller
 
 	$scope.init();
 
+});
+
+app.controller("searchController", function ($scope, $http, $location, $controller, sharedProperties, $timeout) {
+	
+	$scope.searchResults = null;
+	$scope.searchedTerm = null;
+	
+	$scope.init = function () {
+		
+	};
+	
+	$scope.searchBooks = function(query){
+		console.log(query);
+		$scope.searchedTerm = query;
+		$http({
+				url: 'php/search.php',
+				method: "GET",
+				params: {
+					query: query
+				}
+			}).then(function successCallback(response) {
+				console.log(response);
+				var data = response.data;
+				if (data.result === "ok") {
+					$scope.searchResults = data.search_results;
+					console.log(data.searchResults);
+				} else {
+					$scope.searchResults = null;
+				}
+			}, function errorCallback(response) {
+				console.log(response);
+			});
+	}
+	
+	$scope.isCollpased = function(id){
+		console.log(id);
+//		return $(id).attr("aria-expanded");
+	}
+
+	$scope.init();
+
+});
+
+$('.list-group').on('click','> a', function(e) {
+   var $this = $(this);
+    $('.list-group').find('.active').removeClass('active');
+    $this.addClass('active');
+    
 });

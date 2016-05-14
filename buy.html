@@ -6,6 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/xchange.css" rel="stylesheet" />
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/angular.min.js"></script>
@@ -52,10 +53,113 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container">
+	<div class="container" data-ng-controller="searchController">
 		<div class="row">
 			<div class="col-md-12">
-				
+				<form>
+					<div class="input-group">
+						<input type="text" class="form-control input-lg" placeholder="Enter a book name." data-ng-init="searchTerm = ''" data-ng-model="searchTerm">
+						<span class="input-group-btn">
+							<input type="submit" class="btn btn-primary input-lg" data-ng-click="searchBooks(searchTerm);" value="Search"/>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<!--				<div class="table-responsive">-->
+				<!--
+					<table class="table">
+						<tr class="days">
+							<th scope="col" title="Title" id="headerCode">Title</th>
+							<th scope="col" title="Author" id="headerDesc">Author</th>
+							<th scope="col" title="ISBN" id="headerCredit">ISBN</th>
+							<th scope="col" title="Price" id="headerType">Price</th>
+						</tr>
+					</table>
+-->
+				<!--
+					<table class="table table-striped">
+						<tr data-ng-repeat="book in searchResults">
+							<div>
+								<td headers="headerCode">{{book.title}}</td>
+								<td headers="headerDesc">{{book.author}}</td>
+								<td headers="headerCredit">{{book.isbn}}</td>
+								<td headers="headerType">From ${{book.min_price}}</td>
+							</div>
+						</tr>
+					</table>
+-->
+				<div class="xchange-vpad" data-ng-show="searchedTerm !== null">Showing search results for: <em>{{searchedTerm}}</em></div>
+				<ul class="list-group">
+					<!--
+						<li class="list-group-item" data-ng-repeat="book in searchResults">
+							<div class="row">
+								<div class="col-md-4">
+									Title
+								</div>
+								<div class="col-md-6">
+									Author
+								</div>
+							</div>
+						</li>
+-->
+					<li class="list-group-item bg-info" data-ng-repeat="book in searchResults">
+						<div class="row">
+							<div class="col-md-10">
+								<div class="row">
+									<div class="col-md-6">
+										{{book.title}}
+									</div>
+									<div class="col-md-6">
+										{{book.author}}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="text-muted"><em>ISBN: {{book.isbn}}</em></div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<button id="button" type="button" class="btn btn-primary" data-target="#coll-{{book.isbn}}" data-toggle="collapse" data-ng-click="book.isCollapsed = !book.isCollapsed">
+<!--									data-ng-class="glyphicon (isCollapsed($event) ? glyphicon-menu-up : glyphicon-menu-down)"-->
+<!--									book.isCollapsed === true ? glyphicon-menu-up : -->
+									<span data-ng-class="book.isCollapsed === true ? 'glyphicon glyphicon-menu-up' : 'glyphicon glyphicon-menu-down'"></span> From ${{book.min_price}}
+								</button>
+							</div>
+						</div>
+						<div class="row">
+							<div data-ng-attr-id="coll-{{book.isbn}}" class="panel-collapse collapse">
+								<div class="panel-body">
+									<div class="table-responsive">
+										<table class="table">
+											<tr class="days">
+												<th scope="col" title="Condition" id="headerCond">Condition</th>
+												<th scope="col" title="Price" id="headerPrice">Price</th>
+												<th scope="col" title="Buy" id="headerBuy"></th>
+											</tr>
+											<tr data-ng-repeat="xchange in book.xchanges">
+												<td headers="headerCond">{{xchange.CONNAME}}</td>
+												<td headers="headerPrice">{{xchange.BOOKPRICE}}</td>
+												<td headers="headerBuy">
+													<!--													<button class="button btn-success"></button>-->
+													<button class="btn btn-success pull-right">
+														<span class="glyphicon glyphicon-shopping-cart"></span>
+													</button>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+				<!--					<p>{{searchResults[0]}}</p>-->
+				<!--				</div>-->
 			</div>
 		</div>
 	</div>

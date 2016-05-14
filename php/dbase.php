@@ -13,7 +13,6 @@ abstract class dbase
     Function WriteDelDbase($sqltable, $query, &$insertID = NULL)
     {
         require("settings.php");
-        //return true;
         $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
         if (!$conn) 
         {
@@ -50,10 +49,6 @@ abstract class dbase
             echo "Record Deleted";
             mysqli_close($conn);
             
-        }
-        
-        function SearchDbase()
-        {
         }
         
     }
