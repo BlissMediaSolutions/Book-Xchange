@@ -10,6 +10,8 @@ Developed with HTML5, CSS3, javascript, Angular.js, AJAX/JSON, PHP & SQL.
 - 'settings.php' lists the connection details for the DB.  You need to modify the password in this, with your DB password
 - PHP Unit Tests requires installation of PHPUnit framework
 - Internet Explorer 8 (and earlier) don't support HTML5
+- Database Unit Testing assumes the database is empty/clear before running.
+- Testing Framework assumes your either running PHP 5.3, 5.4, 5.5 or 5.6
 
 ##### Tested in: 
 - Firefox 45.0.2 
