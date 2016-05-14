@@ -11,8 +11,10 @@
 	$studID = $_GET['studid'];
 	$studpass = $_GET['password'];
 
+	error_log($studID . ' ' . $studpass);
+
 	$newStudent = new Student($studID, $studpass);
-	$loginResult = $newStudent->findStudent($newStudent->StudID, $newStudent->password);
+	$loginResult = $newStudent->findStudent($newStudent->getStudentID(), $newStudent->getPassword());
 	$returnBody = array( 'result' => $loginResult ? 'ok' : 'bad');
 	
 	if ($loginResult === true) {

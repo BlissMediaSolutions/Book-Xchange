@@ -62,8 +62,9 @@
 	$returnBody = array( 'result' => $errorEncountered === false ? 'ok' : 'bad');
 
 	if ($errorEncountered !== true) {
-		$bookMap = $newBook->mapRepresentation();
-		$returnBody["user"] = $bookMap;
+		// $bookMap = $newBook->mapRepresentation();
+		// $returnBody["user"] = $bookMap;
+		$returnBody["message"] = "Listing added successfully.";
 	}else{
 		header('HTTP/1.1 400 Bad Request');
 		$returnBody["message"] = $errorDescription;

@@ -176,11 +176,27 @@
 			return $this->WriteDelDbase($sqltable, $query);
 		}
 
+		function populateStudentFromArray($array){
+			$this->StudID = $array['STUDID'];
+			$this->uuid = $array['UUID'];
+			$this->fname = $array['FIRSTNAME'];
+			$this->lname = $array['LASTNAME'];
+			$this->email = $array['EMAIL'];
+			$this->phone = $array['PHONE'];
+			$this->password = $array['PASSWORD'];
+		}
+
 		//function to find or check a Student exists within the datatbase
 		function findStudent($StudID, $password){
 			$sqltable = "STUDENT";
 			$query = "SELECT * FROM STUDENT WHERE STUDID='$StudID' AND PASSWORD='$password'";
-			return $this->readFromDbase($sqltable, $query);
+			$result = $this->readFromDbase($sqltable, $query);
+			if ($result !== false) {
+				$firstResult = $result[0];
+				$this->populateStudentFromArray($firstResult);
+				return true;
+			}
+			return false;
 			//$values = $this->readFromDbase($sqltable, $query);
 
 		}
@@ -193,13 +209,7 @@
 			$result = $this->readFromDbase($sqltable, $query);
 			if ($result !== false) {
 				$firstResult = $result[0];
-				$this->StudID = $firstResult['STUDID'];
-				$this->uuid = $firstResult['UUID'];
-				$this->fname = $firstResult['FIRSTNAME'];
-				$this->lname = $firstResult['LASTNAME'];
-				$this->email = $firstResult['EMAIL'];
-				$this->phone = $firstResult['PHONE'];
-				$this->password = $firstResult['PASSWORD'];
+				$this->populateStudentFromArray($firstResult);
 				return true;
 			}
 			return false;
