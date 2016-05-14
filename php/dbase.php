@@ -10,7 +10,7 @@ abstract class dbase
 {
     
     //Function to Write,delete or Amend a record in the Database
-    Function WriteDelDbase($sqltable, $query)
+    Function WriteDelDbase($sqltable, $query, &$insertID = NULL)
     {
         require("settings.php");
         //return true;
@@ -22,6 +22,10 @@ abstract class dbase
         } else 
         {
             $result = mysqli_query($conn, $query);
+            if ($insertID !== NULL) {
+            	$insertID = mysqli_insert_id($conn);
+		    }
+
             mysqli_close($conn);
             if (!$result) {
                 return false;

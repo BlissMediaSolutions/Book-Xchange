@@ -118,7 +118,13 @@
 		{
 			$sqltable = "BOOK";
 			$query = "INSERT INTO BOOK (BOOKNAME, BOOKISBN, BOOKAUTHOR, BOOKPUB, BOOKEDIT) VALUES ('$this->name', '$this->isbn', '$this->author', '$this->publish', '$this->edit')";
-			return $this->WriteDelDbase($sqltable, $query);		
+
+			$insertID = 'null';
+			$result = $this->WriteDelDbase($sqltable, $query, $insertID);
+			if ($result && $insertID !== 'null') {
+				$this->setBookID($insertID);
+			}
+			return $result;
 		}
 
 		/* Deleting a Book from the Database */

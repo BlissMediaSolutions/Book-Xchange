@@ -44,7 +44,11 @@
 			$listing = new Xchange($student->getStudentID(), $newBook->getBookID(), $bookcondition, $bookprice, null, null, 0, 0);
 			if (!$listing->addXchange()) {
 				$errorEncountered = true;
-				$errorDescription = "Unable to create xchange";
+				// in a perfect world, user's would say error X1 occurred.
+				// the reality is they probably won't.
+				// also, there's no point saying error creating xchange, because it'd likely confuse users into thinking
+				// that they did something wrong.
+				$errorDescription = "Internal server error (X1).";
 			}
 		}else{
 			/*Invalid auth*/
@@ -52,19 +56,16 @@
 			$errorDescription = "Invalid authorisation token.";
 		}
 	}else{
-		$errorDescription = "Could not add new book.";
+		$errorDescription = "Internal server error (B1).";
 		error_log($errorDescription);
 		$errorEncountered = true;
 	}
-	// error_log($uuid);
 
 	header('Content-type: application/json');
 	$returnBody = array( 'result' => $errorEncountered === false ? 'ok' : 'bad');
 
 	if ($errorEncountered !== true) {
-		// $bookMap = $newBook->mapRepresentation();
-		// $returnBody["user"] = $bookMap;
-		$returnBody["message"] = "Listing added successfully.";
+		$returnBody["message"] = "Your listing has been created.";
 	}else{
 		header('HTTP/1.1 400 Bad Request');
 		$returnBody["message"] = $errorDescription;

@@ -97,7 +97,7 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="condition">Condition</label>
-									<input type="text" class="form-control" id="condition" name="condition" data-ng-model="newbook.condition" placeholder="Condition" required="required" />
+									<select class="form-control" data-ng-model="newbook.condition" data-ng-options="condition as condition.name for condition in conditions" data-ng-init="newbook.condition = conditions[0]" ></select>
 								</div>
 							</div>
 						</div>
@@ -107,6 +107,12 @@
 									<label for="comments">Comments</label>
 									<textarea class="form-control" id="comments" name="comments" data-ng-model="newbook.comments" placeholder="Enter a comment..." required="required"></textarea>
 								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label data-ng-show="showListingError === true" class="text-danger">{{listingMessage}}</label>
+								<label data-ng-show="showListingSuccess === true" class="text-success">{{listingMessage}} You will be redirected shortly.</label>
 							</div>
 						</div>
 						<div class="form-group pull-right">
