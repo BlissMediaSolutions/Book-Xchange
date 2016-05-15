@@ -11,8 +11,8 @@
     syntaxCheck="false">
     <testsuites>
   		<testsuite name="Book-Xchange Test Suite">
-    		<directory>/tests/</directory>
-    		<!--<file>/tests/StudentTest.php</file>
+    		<directory>tests/</directory>
+    		<file>tests/StudentTest.php</file>
     		 <file>/path/to/MyTest.php</file>
     		<exclude>/path/to/exclude</exclude> -->
   		</testsuite>
