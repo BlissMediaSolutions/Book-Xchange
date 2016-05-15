@@ -1,5 +1,6 @@
 # Book-Xchange
 ##### The Book Xchange Web Platform - to facilitate Swinburne University students selling text books
+![alt text](https://travis-ci.org/BlissMediaSolutions/Book-Xchange.svg?branch=master "Travis CI Build Status")
 
 Status: Incomplete, Under Development
 
