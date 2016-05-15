@@ -8,6 +8,10 @@ php:
 services:
   - mysql
   
+install:
+  - pecl install pdo
+  - pecl install pdo_mysql
+  
 before_script:
   - mysql -u root -e 'CREATE DATABASE BOOKXCHANGE;'
   - mysql -u root BOOKXCHANGE < database/book.sql
