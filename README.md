@@ -24,6 +24,11 @@ Developed with HTML5, CSS3, javascript, Angular.js, AJAX/JSON, PHP & SQL.
 - Terry Lewis (9998373)
 - Kushani Liyanage (100056391)
    
+##### Unit Testing JS Functions
+###### Installation (Chrome)
+`npm install karma phantomjs-prebuilt jasmine-core karma-phantomjs-launcher karma-jasmine karma-chrome-launcher --save-dev`
+###### Setup
+`start karma.conf.js`
    
 ==========================
 "The Book-Xchange" Copyright (C) 2016, Swinburne University of Technology

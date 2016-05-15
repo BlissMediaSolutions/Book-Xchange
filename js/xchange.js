@@ -34,10 +34,7 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 	};
 
 	$scope.init = function () {
-
-		
 		$scope.loadUserInfo();
-		$scope.showIt = false;
 	};
 
 	$scope.loadUserInfo = function () {
@@ -48,8 +45,6 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 	};
 
 	$scope.completeLogin = function (newUser) {
-		console.log("completing login:");
-		console.log(newUser);
 		$scope.setUser(newUser);
 		localStorage.setItem('useraccount', JSON.stringify($scope.user));
 	}
@@ -64,7 +59,6 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 
 	$scope.registerUser = function (registrant) {
 		var user = $scope.user;
-		console.log(user);
 		if (registrant.password !== registrant.passwordConfirm) {
 			alert("The provided passwords do not match.");
 		} else if (registrant.acceptedTOS === false) {
@@ -98,7 +92,6 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 	$scope.loginError = '';
 
 	$scope.loginUser = function (login) {
-		console.log(login);
 		if (!login.id) {
 			$scope.loginError = 'Please enter an email address.';
 			$scope.showLoginError = true;
@@ -117,7 +110,6 @@ app.controller("userController", function ($scope, $http, $location, sharedPrope
 				var data = response.data;
 				if (data.result === "ok") {
 					$scope.showLoginError = false;
-					console.log(data);
 					$scope.completeLogin(data.user);
 					window.location.replace('index.html');
 				} else {
@@ -267,7 +259,6 @@ app.controller("searchController", function ($scope, $http, $location, $controll
 					query: query
 				}
 			}).then(function successCallback(response) {
-				console.log(response);
 				var data = response.data;
 				if (data.result === "ok") {
 					$scope.searchResults = data.search_results;
