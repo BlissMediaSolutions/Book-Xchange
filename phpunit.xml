@@ -13,8 +13,7 @@
   		<testsuite name="Book-Xchange Test Suite">
     		<!--<directory>tests/</directory> -->
     		<file>tests/StudentTest.php</file>
-    		 <!-- <file>/path/to/MyTest.php</file>
-    		<exclude>/path/to/exclude</exclude> -->
-  		</testsuite>
+    		<file>tests/BookTest.php</file>
+    		</testsuite>
 	</testsuites>
 </phpunit>
