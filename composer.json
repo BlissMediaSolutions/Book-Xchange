@@ -1,0 +1,24 @@
+{
+    "name": "BlissMediaSolutions/Book-Xchange",
+    "description": "The Book Xchange Web Platform - to facilitate Swinburne University students selling text books",
+    "keywords": ["Book-Xchange", "Book", "Swinburne", "Web"],
+    "homepage": "https://github.com/BlissMediaSolutions/Book-Xchange",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Danielle Walker",
+            "email": "bliss.solutions@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.3.*",
+        "phpunit/dbunit": ">=1.2"
+    },
+    "autoload-dev": {
+        "psr-4": { "BlissMediaSolutions\\tests\\": "tests/" }
+    }
+}

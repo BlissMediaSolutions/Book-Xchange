@@ -9,12 +9,26 @@
     convertWarningsToExceptions="true"
     processIsolation="false"
     syntaxCheck="false">
-    <testsuites>
+   
+   <testsuites>
   		<testsuite name="Book-Xchange Test Suite">
     		<!--<directory>tests/</directory> -->
     		<file>tests/StudentTest.php</file>
     		<file>tests/BookTest.php</file>
-    		<!--<file>tests/StudentDbaseTest.php</file> -->
+    		<file>tests/StudentDbaseTest.php</file>
     		</testsuite>
 	</testsuites>
+
+    <logging>
+        <log type="coverage-clover" target="coverage.clover"/>
+    </logging>
+
+    <php>
+        <var name="DB_DSN" value="mysql:dbname=BOOKXCHANGE;host=localhost"/>
+        <var name="DB_USER" value="root"/>
+        <var name="DB_PASSWD" value=""/>
+        <var name="DB_DBNAME" value="BOOKXCHANGE"/>
+    </php>
+
+
 </phpunit>
