@@ -5,18 +5,18 @@ include_once('php/student.php');
 class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
 {
 
-	// only instantiate pdo once for test clean-up/fixture load
-    static private $pdo = null;
+    // only instantiate pdo once for test clean-up/fixture load
+    protected $pdo = null;
 
     // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
     private $conn = null;
 
-    public function __construct()
-    {
-		$ds = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this->getConnection());
-		$ds->addTable('STUDENT');
+    //public function __construct()
+    //{
+	//	$ds = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this->getConnection());
+	//	$ds->addTable('STUDENT');
 
-    }
+    //}
 
     // IMPORTANT : overload getSetUpOperation and add "TRUE" parameter to CLEAN_INSERT()
     protected function getSetUpOperation() 
@@ -24,16 +24,23 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
         return PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT(TRUE);
     }
 
-    final public function getConnection()
+    public function getConnection()
     {
-        if ($this->conn === null) {
-            if (self::$pdo == null) {
-                self::$pdo = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
-            }
-            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+        if (null === $this->pdo) {
+            $this->pdo = new PDO('mysql::memory:');
+            $this->pdo->exec('CREATE TABLE STUDENT (STUDID INT, UUID CHAR(128), FIRSTNAME VARCHAR(20),				
+	    LASTNAME VARCHAR(20), EMAIL VARCHAR(40), PHONE VARCHAR(10), PASSWORD CHAR(60), PRIMARY KEY (STUDID))');
         }
+        return $this->createDefaultDBConnection($this->pdo, ':memory:');
+        
+        //if ($this->conn === null) {
+        //    if (self::$pdo == null) {
+        //        self::$pdo = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
+        //    }
+        //    $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+        //}
 
-        return $this->conn;
+        //return $this->conn;
     }
 
     public function getDataSet()
