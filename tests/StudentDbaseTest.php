@@ -4,7 +4,6 @@ include_once('php/student.php');
 
 class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
 {
-
     // only instantiate pdo once for test clean-up/fixture load
     protected $pdo = null;
 
