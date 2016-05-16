@@ -25,21 +25,21 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
 
     public function getConnection()
     {
-        if (null === $this->pdo) {
-            $this->pdo = new PDO('mysql::memory:');
-            $this->pdo->exec('CREATE TABLE STUDENT (STUDID INT, UUID CHAR(128), FIRSTNAME VARCHAR(20),				
-	    LASTNAME VARCHAR(20), EMAIL VARCHAR(40), PHONE VARCHAR(10), PASSWORD CHAR(60), PRIMARY KEY (STUDID))');
-        }
-        return $this->createDefaultDBConnection($this->pdo, ':memory:');
-        
-        //if ($this->conn === null) {
-        //    if (self::$pdo == null) {
-        //        self::$pdo = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
-        //    }
-        //    $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+        //if (null === $this->pdo) {
+        //    $this->pdo = new PDO('mysql::memory:');
+        //    $this->pdo->exec('CREATE TABLE STUDENT (STUDID INT, UUID CHAR(128), FIRSTNAME VARCHAR(20),				
+	//    LASTNAME VARCHAR(20), EMAIL VARCHAR(40), PHONE VARCHAR(10), PASSWORD CHAR(60), PRIMARY KEY (STUDID))');
         //}
+        //return $this->createDefaultDBConnection($this->pdo, ':memory:');
+        
+        if ($this->conn === null) {
+            if (self::$pdo == null) {
+                self::$pdo = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
+            }
+            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+        }
 
-        //return $this->conn;
+        return $this->conn;
     }
 
     public function getDataSet()
