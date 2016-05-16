@@ -18,8 +18,13 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
 
     }
 
+    // IMPORTANT : overload getSetUpOperation and add "TRUE" parameter to CLEAN_INSERT()
+    protected function getSetUpOperation() 
+    {
+        return PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT(TRUE);
+    }
 
-	final public function getConnection()
+    final public function getConnection()
     {
         if ($this->conn === null) {
             if (self::$pdo == null) {
