@@ -1,6 +1,6 @@
 <?php
 
-include('php/student.php');
+include_once('php/student.php');
 
 class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
 {
