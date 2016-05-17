@@ -10,8 +10,8 @@ matrix:
 before_script:
   - composer self-update
   - composer install --no-interaction --prefer-source --dev
-  - mysql -u root -e 'CREATE DATABASE BOOKXCHANGE;'
-  - mysql -u root BOOKXCHANGE < database/book.sql
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS BOOKXCHANGE;'
+  - mysql BOOKXCHANGE < database/book.sql
   
 script:
   - ./vendor/bin/phpunit
