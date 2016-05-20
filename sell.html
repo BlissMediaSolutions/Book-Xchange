@@ -32,8 +32,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
-					<li><a href="buy.html" data-ng-show="user.authenticated === true">Buy</a></li>
-					<li class="active"><a href="sell.html">Sell</a></li>
+					<li><a href="buy.html">Buy</a></li>
+					<li class="active" data-ng-show="user.authenticated === true"><a href="sell.html">Sell</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!---IF LOGGED IN-->
@@ -53,7 +53,7 @@
 		</div>
 	</nav>
 	<div class="container" data-ng-init="newbook = {}" data-ng-controller="bookController">
-		<div class="row" data-ng-show="user().authenticated === false">
+		<div class="row" data-ng-show="user().authenticated !== true">
 			<div class="col-md-12 well text-center">
 				<div>You must be registered and logged in to use this page.</div>
 				<div class="row">
