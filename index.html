@@ -33,7 +33,7 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
 					<li><a href="buy.html">Buy</a></li>
-					<li><a href="sell.html">Sell</a></li>
+					<li><a href="sell.html" data-ng-show="user.authenticated === true">Sell</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!---IF LOGGED IN-->
@@ -53,8 +53,18 @@
 		</div>
 	</nav>
 	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<img src="img/header.jpg" alt="Header image" class="img-responsive" />
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1 text-center">
+				<a href="buy.html" class="btn btn-success btn-lg">Get Started Now...</a>
+			</div>
+		</div>
 	</div>
-	<input type="text" class="form-control" placeholder="Text input">
 </body>
 
 </html>

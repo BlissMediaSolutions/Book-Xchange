@@ -159,6 +159,8 @@ app.controller("bookController", function ($scope, $http, $location, $controller
 	, name: 'Very Poor'
 	}];
 	
+	$scope.user = sharedProperties.getUser;
+	
 	/**
 	 * @brief Sets the listing error, which will be displayed on the sell.html page.
 	 */

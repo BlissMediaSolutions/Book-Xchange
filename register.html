@@ -33,7 +33,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
 					<li><a href="buy.html">Buy</a></li>
-					<li><a href="sell.html">Sell</a></li>
+					<li><a href="sell.html" data-ng-show="user.authenticated === true">Sell</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!---IF LOGGED IN-->
@@ -55,7 +55,7 @@
 	<div class="container" data-ng-init="newuser = {fname:'', lname:'', email:'', studentID:'', phone:'', password:'', passwordConfirm:'', acceptedTOS:false}">
 		<div class="row">
 			<div class="col-md-12 well">
-				<form novalidate="novalidate">
+				<form>
 					<fieldset>
 						<legend>Register</legend>
 						<div class="row">

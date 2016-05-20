@@ -34,7 +34,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
 					<li class="active"><a href="buy.html">Buy</a></li>
-					<li><a href="sell.html">Sell</a></li>
+					<li><a href="sell.html" data-ng-show="user.authenticated === true">Sell</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<!---IF LOGGED IN-->
@@ -57,8 +57,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<form>
+					<label for="bookSearchField">Search</label>
 					<div class="input-group">
-						<input type="text" class="form-control input-lg" placeholder="Enter a book name." data-ng-init="searchTerm = ''" data-ng-model="searchTerm">
+						<input type="text" class="form-control input-lg" id="bookSearchField" placeholder="Enter a book name." data-ng-init="searchTerm = ''" data-ng-model="searchTerm">
 						<span class="input-group-btn">
 							<input type="submit" class="btn btn-primary input-lg" data-ng-click="searchBooks(searchTerm);" value="Search"/>
 						</span>
