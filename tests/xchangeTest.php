@@ -1,6 +1,6 @@
 <?php
 
-include('php/xchange.php');
+include_once ('php/xchange.php');
 
 class StudentTest extends PHPUnit_Framework_TestCase
 {
