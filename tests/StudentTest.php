@@ -1,6 +1,6 @@
 <?php
 
-include('php/student.php');
+include_once('php/student.php');
 
 class StudentTest extends PHPUnit_Framework_TestCase
 {
