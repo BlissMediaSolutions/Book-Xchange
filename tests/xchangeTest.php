@@ -2,7 +2,7 @@
 
 include_once ('php/xchange.php');
 
-class StudentTest extends PHPUnit_Framework_TestCase
+class xchangeTest extends PHPUnit_Framework_TestCase
 {
 	public function testXchangeCreate()
 	{
