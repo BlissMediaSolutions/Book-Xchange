@@ -7,6 +7,6 @@
 
 	$host = "localhost";  //server
 	$user = "root";  //username
-	$pwd = ".....";  //password
+	$pwd = "";  //password
 	$sql_db = "BOOKXCHANGE"; //database
 ?>
