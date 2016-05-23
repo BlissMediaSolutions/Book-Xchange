@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="BOOKXCHANGE">
+	<table_data name="BOOK">
+	</table_data>
+	<table_data name="CONDTYPE">
+	<row>
+		<field name="CONDID">1</field>
+		<field name="CONNAME">Very Good</field>
+	</row>
+	<row>
+		<field name="CONDID">2</field>
+		<field name="CONNAME">Good</field>
+	</row>
+	<row>
+		<field name="CONDID">3</field>
+		<field name="CONNAME">Average</field>
+	</row>
+	<row>
+		<field name="CONDID">4</field>
+		<field name="CONNAME">Poor</field>
+	</row>
+	<row>
+		<field name="CONDID">5</field>
+		<field name="CONNAME">Very Poor</field>
+	</row>
+	</table_data>
+	<table_data name="STUDENT">
+	</table_data>
+	<table_data name="XCHANGE">
+	</table_data>
+</database>
+</mysqldump>

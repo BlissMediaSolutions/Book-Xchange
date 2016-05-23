@@ -1,8 +1,8 @@
 <?php
 
-include_once('php/student.php');
+include('php/student.php');
 
-class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
+class dbaseTest extends PHPUnit_Extensions_Database_TestCase
 {
 
 	// only instantiate pdo once for test clean-up/fixture load
@@ -11,10 +11,11 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
     // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
     private $conn = null;
 
+
     public function __construct()
     {
 		$ds = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this->getConnection());
-		//$ds->addTable('STUDENT');
+		$ds->addTable('STUDENT');
 
     }
 
@@ -52,23 +53,10 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
     //Test deleting Student from Database
     public function testDeleteStudent()
     {
-    	$thisStudent = new Student('1234567', 'Danielle', 'Walker', 'danielle@bliss.net.au', '123456789', 'password');
-        $thisStudent->addStudent();
-        $this->assertEquals(1, $this->getConnection()->getRowCount('STUDENT'));
-    	
-    	$thisStudent->deleteStudent('1234567');
-    	$this->assertEquals(0, $this->getConnection()->getRowCount('STUDENT'));
+
+
     }
 	
-	//Testing looking for a Student in the Database
-	public function testFindStudent()
-	{
-		$thisStudent = new Student('1234567', 'Danielle', 'Walker', 'danielle@bliss.net.au', '123456789', 'password');
-		$thisStudent->addStudent();
-		$thisStudent->findStudent('1234567', 'password');
-		$this->assertEquals(1, $this->getConnection()->getRowCount('STUDENT'));
-	}
 
-	
 
 }

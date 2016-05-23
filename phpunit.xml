@@ -16,7 +16,8 @@
     		<file>tests/StudentTest.php</file>
     		<file>tests/BookTest.php</file>
     		<file>tests/xchangeTest.php</file>
-    		<!-- <file>tests/StudentDbaseTest.php</file> -->
+    		<file>tests/xchangeTest.php</file>
+    		<file>tests/StudentDbaseTest.php</file>
     		</testsuite>
 	</testsuites>
 
