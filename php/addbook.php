@@ -17,10 +17,11 @@
 	$bookauthor = $_GET['author'];
 	$bookpublisher = $_GET['publisher'];
 	$bookedition = $_GET['edition'];
-	$bookprice = 10;
-	$bookcondition = 3;
+	// $bookprice = 10;
+	// $bookcondition = 3;
 	$uuid = $_GET['uuid'];
-	// $bookcondition = $_GET['condition'];
+	$bookcondition = $_GET['condition'];
+	$bookprice = $_GET['price'];
 	// $bookcomments = $_GET['comments'];
 
 	$newBook = new Book($bookisbn);

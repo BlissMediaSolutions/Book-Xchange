@@ -86,7 +86,8 @@
 		function addXchange(){
 			$sqltable = "XCHANGE";
 			// $formattedPrice = number_format($this->bookprice, 2, '.');
-			$formattedPrice = "100.20";
+			// $formattedPrice = "100.20";
+			$formattedPrice = $this->bookprice;
 			$query = "INSERT INTO XCHANGE (STUDID, BOOKID, CONDID, BOOKPRICE, BOOKIMG, BOOKRES, BOOKDATE, BOOKSOLD) VALUES ('$this->StudID', '$this->bookid', '$this->condid', '$formattedPrice', '$this->bookimg', '$this->bookres', '$this->bookdate', '$this->booksold')";
 			error_log($query);
 			$result = $this->WriteDelDbase($sqltable, $query); 		/*Call 'WriteToDbase' from dbase.php */

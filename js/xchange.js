@@ -202,6 +202,7 @@ app.controller("bookController", function ($scope, $http, $location, $controller
 			$scope.setListingError("Authorisation error.");
 			window.location.replace('login.html');
 		}else{
+            console.log(book);
 			$http({
 				url: 'php/addbook.php',
 				 method: "GET",
@@ -211,7 +212,9 @@ app.controller("bookController", function ($scope, $http, $location, $controller
 					author: book.author,
 					publisher: book.publisher,
 					edition: book.edition,
-					uuid: user.uuid
+					uuid: user.uuid,
+                    price: book.price,
+                    condition: book.condition.id
 				}
 			}).then(function successCallback(response) {
 				var data = response.data;
@@ -254,6 +257,8 @@ app.controller("searchController", function ($scope, $http, $location, $controll
 	$scope.searchBooks = function(query){
 		// the last searched term is stored so it can be referenced on the search page.
 		$scope.searchedTerm = query;
+        $scope.errorMessage = null;
+        $scope.showError = false;
 		$http({
 				url: 'php/search.php',
 				method: "GET",
@@ -263,14 +268,35 @@ app.controller("searchController", function ($scope, $http, $location, $controll
 			}).then(function successCallback(response) {
 				var data = response.data;
 				if (data.result === "ok") {
-					$scope.searchResults = data.search_results;
+                    $scope.showError = false;
+                    $scope.errorMessage = null;
+					$scope.searchResults = data.search_results ? data.search_results : [];
 				} else {
 					// clear search results, this way the user knows the search went through.
-					$scope.searchResults = null;
+					$scope.searchResults = [];
 				}
 			}, function errorCallback(response) {
 				console.log(response);
+                $scope.showError = true;
+                $scope.errorMessage = "Error connecting to server.";
 			});
-	}
+	};
+    
+    $scope.shouldShowBuyButton = function(){
+        var user = sharedProperties.getUser();
+        if (!user){
+            return false;
+        }
+        return user.authenticated === true;
+    };
+    
+    $scope.bookButtonClicked = function(xchange, book){
+//        console.log(book);
+        if ($scope.shouldShowBuyButton() == true){
+            alert('You have registered interest in "' + book.title + '". The seller should contact you shortly.');
+        }else{
+            window.location.replace('register.html');
+        }
+    };
 
 });

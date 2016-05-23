@@ -2,127 +2,142 @@
 <html lang="en" data-ng-app="bookXChange">
 
 <head>
-	<title>Buy | Book X-Change</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/xchange.css" rel="stylesheet" />
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/xchange.js"></script>
-	<!--	<link href="me.css" rel="stylesheet" />-->
-	<!--[if lt IE 9]>
+    <title>Buy | Book X-Change</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/xchange.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/xchange.js"></script>
+    <!--	<link href="me.css" rel="stylesheet" />-->
+    <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script> <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
-	<nav class="navbar navbar-default" data-ng-controller="userController">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.html">Book Xchange</a>
-			</div>
+    <nav class="navbar navbar-default" data-ng-controller="userController">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Book Xchange</a>
+            </div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
-					<li class="active"><a href="buy.html">Buy</a></li>
-					<li><a href="sell.html" data-ng-show="user.authenticated === true">Sell</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<!---IF LOGGED IN-->
-					<li data-ng-show="user.authenticated === true" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstname}}<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="account.html">My Account</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="" data-ng-click="performLogout()">Logout</a></li>
-						</ul>
-					</li>
-					<li data-ng-show="user.authenticated !== true"><a href="login.html">Login</a></li>
-					<li data-ng-show="user.authenticated !== true"><a href="register.html">Register</a></li>
-				</ul>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="buy.html">Search</a></li>
+                    <li><a href="sell.html" data-ng-show="user.authenticated === true">Sell</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!---IF LOGGED IN-->
+                    <li data-ng-show="user.authenticated === true" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstname}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="account.html">My Account</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="" data-ng-click="performLogout()">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li data-ng-show="user.authenticated !== true"><a href="login.html">Login</a></li>
+                    <li data-ng-show="user.authenticated !== true"><a href="register.html">Register</a></li>
+                </ul>
 
-			</div>
-		</div>
-	</nav>
-	<div class="container" data-ng-controller="searchController">
-		<div class="row">
-			<div class="col-md-12">
-				<form>
-					<label for="bookSearchField">Search</label>
-					<div class="input-group">
-						<input type="text" class="form-control input-lg" id="bookSearchField" placeholder="Enter a book name." data-ng-init="searchTerm = ''" data-ng-model="searchTerm">
-						<span class="input-group-btn">
+            </div>
+        </div>
+    </nav>
+    <div class="container" data-ng-controller="searchController">
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <label for="bookSearchField">Search</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control input-lg" id="bookSearchField" placeholder="Enter a book name." data-ng-init="searchTerm = ''" data-ng-model="searchTerm">
+                        <span class="input-group-btn">
 							<input type="submit" class="btn btn-primary input-lg" data-ng-click="searchBooks(searchTerm);" value="Search"/>
 						</span>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="xchange-vpad" data-ng-show="searchedTerm !== null">Showing search results for: <em>{{searchedTerm}}</em></div>
-				<ul class="list-group">
-					<li class="list-group-item bg-info" data-ng-repeat="book in searchResults">
-						<div class="row">
-							<div class="col-md-10">
-								<div class="row">
-									<div class="col-md-6">
-										{{book.title}}
-									</div>
-									<div class="col-md-6">
-										{{book.author}}
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="text-muted"><em>ISBN: {{book.isbn}}</em></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-2">
-								<button id="button" type="button" class="btn btn-primary" data-target="#coll-{{book.isbn}}" data-toggle="collapse" data-ng-click="book.isCollapsed = !book.isCollapsed">
-									<span data-ng-class="book.isCollapsed === true ? 'glyphicon glyphicon-menu-up' : 'glyphicon glyphicon-menu-down'"></span> From ${{book.min_price}}
-								</button>
-							</div>
-						</div>
-						<div class="row">
-							<div data-ng-attr-id="coll-{{book.isbn}}" class="panel-collapse collapse">
-								<div class="panel-body">
-									<div class="table-responsive">
-										<table class="table">
-											<tr class="days">
-												<th scope="col" title="Condition" id="headerCond">Condition</th>
-												<th scope="col" title="Price" id="headerPrice">Price</th>
-												<th scope="col" title="Buy" id="headerBuy"></th>
-											</tr>
-											<tr data-ng-repeat="xchange in book.xchanges">
-												<td headers="headerCond">{{xchange.CONNAME}}</td>
-												<td headers="headerPrice">{{xchange.BOOKPRICE}}</td>
-												<td headers="headerBuy">
-													<button class="btn btn-success pull-right">
-														<span class="glyphicon glyphicon-shopping-cart"></span>
-													</button>
-												</td>
-											</tr>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" data-ng-show="searchResults.length > 0 && showError == false">
+            <div class="col-md-12">
+                <div class="xchange-vpad" data-ng-show="searchedTerm !== null">
+                    <p>Showing search results for: <em>{{searchedTerm}}</em></p>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item bg-info" data-ng-repeat="book in searchResults">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{book.title}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{book.author}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="text-muted"><em>ISBN: {{book.isbn}}</em></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button id="button" type="button" class="btn btn-primary" data-target="#coll-{{book.isbn}}" data-toggle="collapse" data-ng-click="book.isCollapsed = !book.isCollapsed">
+                                    <span data-ng-class="book.isCollapsed === true ? 'glyphicon glyphicon-menu-up' : 'glyphicon glyphicon-menu-down'"></span> From ${{book.min_price}}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div data-ng-attr-id="coll-{{book.isbn}}" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr class="days">
+                                                <th scope="col" title="Condition" id="headerCond">Condition</th>
+                                                <th scope="col" title="Price" id="headerPrice">Price</th>
+                                                <th scope="col" title="Buy" id="headerBuy"></th>
+                                            </tr>
+                                            <tr data-ng-repeat="xchange in book.xchanges">
+                                                <td headers="headerCond">{{xchange.CONNAME}}</td>
+                                                <td headers="headerPrice">{{xchange.BOOKPRICE}}</td>
+                                                <td headers="headerBuy">
+                                                    <button class="btn btn-success pull-right" data-ng-show="shouldShowBuyButton() == true" data-ng-click="bookButtonClicked(xchange, book);">
+                                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                                    </button>
+                                                    <button class="btn btn-success pull-right" data-ng-show="shouldShowBuyButton() == false" data-ng-click="bookButtonClicked(xchange, book);">
+                                                        Register
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row" data-ng-show="showError == false && (searchResults.length == 0 || searchResults.length == null)">
+            <div class="col-md-12" data-ng-show="searchResults.length == 0">
+                <p>No results for: <em>{{searchedTerm}}</em></p>
+            </div>
+        </div>
+        <div class="row" data-ng-show="showError == true">
+            <div class="col-md-12">
+                <p class="text-danger">{{errorMessage}}</p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

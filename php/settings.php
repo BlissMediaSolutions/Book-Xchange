@@ -5,8 +5,8 @@
 		1.0 - Initall settings created
   */
 
-	$host = "127.0.0.1";  //server
+	$host = "localhost";  //server
 	$user = "root";  //username
-	$pwd = "";  //password
+	$pwd = ".....";  //password
 	$sql_db = "BOOKXCHANGE"; //database
 ?>

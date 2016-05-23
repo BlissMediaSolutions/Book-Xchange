@@ -46,7 +46,7 @@ CREATE TABLE XCHANGE (
 	STUDID INT,									/* Student ID of Book Seller */
 	BOOKID INT,									/* Book ID of Book being Sold */
 	CONDID INT,									/* ID Number for the Condition of the Book */
-	BOOKPRICE DECIMAL(3,2),						/* The Price the Book is being sold for */
+	BOOKPRICE DECIMAL(5,2),						/* The Price the Book is being sold for */
 	BOOKIMG MEDIUMBLOB,							/* Reserved for Image of Book */
 	BOOKRES INT,								/* Student ID of Book Buyer */
 	BOOKDATE DATE,								/* Date book sold */

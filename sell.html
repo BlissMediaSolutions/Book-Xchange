@@ -6,10 +6,12 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/angular-notify.min.css" rel="stylesheet" />
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/angular.min.js"></script>
 	<script src="js/xchange.js"></script>
+    <script src="js/angular-notify.min.js"></script>
 	<!--	<link href="me.css" rel="stylesheet" />-->
 	<!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script> <script src="js/respond.min.js"></script>
@@ -32,7 +34,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="index.html">Home<span class="sr-only">(current)</span></a></li>
-					<li><a href="buy.html">Buy</a></li>
+					<li><a href="buy.html">Search</a></li>
 					<li class="active" data-ng-show="user.authenticated === true"><a href="sell.html">Sell</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -96,22 +98,28 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label for="edition">Edition</label>
 									<input type="number" class="form-control" id="edition" name="edition" data-ng-model="newbook.edition" placeholder="Edition" required="required" value="1" />
 								</div>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label for="isbn">ISBN</label>
 									<input type="text" class="form-control" id="isbn" name="isbn" data-ng-model="newbook.isbn" placeholder="ISBN" required="required" value="12345" />
 								</div>
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-3">
 								<div class="form-group">
 									<label for="condition">Condition</label>
 									<select class="form-control" data-ng-model="newbook.condition" id="condition" data-ng-options="condition as condition.name for condition in conditions" data-ng-init="newbook.condition = conditions[0]"></select>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label for="price">Price</label>
+									<input type="number" class="form-control" id="price" name="price" data-ng-model="newbook.price" placeholder="Price" required="required" />
 								</div>
 							</div>
 						</div>

@@ -81,9 +81,9 @@
 
 		}
 				
-		//function setBookID($par){
-		//	$this->bookid = $par;
-		//}
+		function setBookID($par){
+			$this->bookid = $par;
+		}
 
 		/* Class set/get functions */
 		function getBookID(){
