@@ -17,7 +17,7 @@ before_script:
   - composer install --no-interaction --prefer-source --dev
   - mysql -e 'CREATE DATABASE IF NOT EXISTS BOOKXCHANGE;'
   - mysql BOOKXCHANGE < database/book.sql
-  - mysql SET PASSWORD FOR root@localhost=PASSWORD('')
+  - mysql mysqladmin -u root -pCURRENTPASSWORD password ''
   - npm install karma phantomjs-prebuilt jasmine-core karma-phantomjs-launcher karma-jasmine karma-chrome-launcher --save-dev
   
 script:
