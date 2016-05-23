@@ -15,7 +15,6 @@ class dbaseTest extends PHPUnit_Extensions_Database_TestCase
     public function __construct()
     {
 		$ds = new PHPUnit_Extensions_Database_DataSet_QueryDataSet($this->getConnection());
-		$ds->addTable('STUDENT');
 
     }
 
