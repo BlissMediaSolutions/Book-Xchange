@@ -35,9 +35,10 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
     {
         return $this->createMySQLXMLDataSet('file.xml');
     }
-
-    
-    //Test adding student to Database
+	
+    /**
+    * @covers Student::addStudent
+    */
 	public function testAddStudent()
     {
         $this->assertEquals(0, $this->getConnection()->getRowCount('STUDENT'));
@@ -49,7 +50,9 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
 
     }
 
-    //Test deleting Student from Database
+    /**
+    * @covers Student::deleteStudent
+    */
     public function testDeleteStudent()
     {
     	$thisStudent = new Student('1234567', 'Danielle', 'Walker', 'danielle@bliss.net.au', '123456789', 'password');
@@ -60,7 +63,9 @@ class StudentDbaseTest extends PHPUnit_Extensions_Database_TestCase
     	$this->assertEquals(0, $this->getConnection()->getRowCount('STUDENT'));
     }
 	
-	//Testing looking for a Student in the Database
+	/**
+    * @covers Student::findStudent
+    */
 	public function testFindStudent()
 	{
 		$thisStudent = new Student('1234567', 'Danielle', 'Walker', 'danielle@bliss.net.au', '123456789', 'password');
