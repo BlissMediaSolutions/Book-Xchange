@@ -2,6 +2,7 @@
 ##### The Book Xchange Web Platform - to facilitate Swinburne University students selling text books
 ![alt text](https://travis-ci.org/BlissMediaSolutions/Book-Xchange.svg?branch=master "Travis CI Build Status")
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/1c5f64ad-c103-4d33-a019-73cfe23499f5/mini.png)](https://insight.sensiolabs.com/projects/1c5f64ad-c103-4d33-a019-73cfe23499f5)
+[![Coverage Status](https://coveralls.io/repos/github/BlissMediaSolutions/Book-Xchange/badge.svg?branch=master)](https://coveralls.io/github/BlissMediaSolutions/Book-Xchange?branch=master)
 
 Status: Incomplete, Under Development
 
